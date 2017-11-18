@@ -1,5 +1,8 @@
 package com.diegopizzo.moviesbooks.config.dagger;
 
+import com.diegopizzo.moviesbooks.business.network.service.BooksService;
+import com.diegopizzo.moviesbooks.business.network.service.MoviesService;
+import com.diegopizzo.moviesbooks.business.network.service.ServiceConstants;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -23,7 +26,7 @@ public class NetworkModule {
     Retrofit provideRetrofit(final GsonConverterFactory gsonConverterFactory) {
         //TODO endpoint in build.gradle??
         return new Retrofit.Builder()
-                .baseUrl("")
+                .baseUrl(ServiceConstants.SERVICE_ENDPOINT)
                 .addConverterFactory(gsonConverterFactory)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
@@ -41,4 +44,16 @@ public class NetworkModule {
         return new GsonBuilder().serializeNulls().create();
     }
 
+
+    @Provides
+    @Singleton
+    MoviesService provideMoviesService(final Retrofit retrofit) {
+        return retrofit.create(MoviesService.class);
+    }
+
+    @Provides
+    @Singleton
+    BooksService provideBooksService(final Retrofit retrofit) {
+        return retrofit.create(BooksService.class);
+    }
 }
