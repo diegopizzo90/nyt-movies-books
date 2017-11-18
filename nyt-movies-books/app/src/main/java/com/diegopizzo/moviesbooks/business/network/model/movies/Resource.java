@@ -1,4 +1,4 @@
-package com.diegopizzo.moviesbooks.business.network.model;
+package com.diegopizzo.moviesbooks.business.network.model.movies;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

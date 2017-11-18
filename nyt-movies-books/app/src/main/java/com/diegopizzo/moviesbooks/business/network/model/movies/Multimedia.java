@@ -1,4 +1,4 @@
-package com.diegopizzo.moviesbooks.business.network.model;
+package com.diegopizzo.moviesbooks.business.network.model.movies;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -17,11 +17,11 @@ public class Multimedia {
         return resource;
     }
 
-    public void setResource(Resource resource) {
+    public void setResource(final Resource resource) {
         this.resource = resource;
     }
 
-    public Multimedia withResource(Resource resource) {
+    public Multimedia withResource(final Resource resource) {
         this.resource = resource;
         return this;
     }
