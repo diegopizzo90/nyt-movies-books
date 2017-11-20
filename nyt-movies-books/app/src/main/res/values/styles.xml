@@ -6,6 +6,18 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="MyTheme" parent="AppTheme">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimaryMyTheme</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkMyTheme</item>
+        <item name="colorAccent">@color/colorAccentMyTheme</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:textColorPrimary">@color/cardview_light_background</item>
+        <item name="android:textColorSecondary">@color/secondary_text_lightMyTheme</item>
+    </style>
 </resources>
