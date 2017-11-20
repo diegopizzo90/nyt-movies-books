@@ -14,7 +14,8 @@ import com.diegopizzo.moviesbooks.config.mvp.AbstractMvpFragment;
 public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFragmentContract.Presenter>
         implements MoviesReviewsFragmentContract.View {
 
-    public static final String TAG_MOVIES_REVIEWS_FRAGMENT = "MoviesReviewsFragment";
+    public static final String TAG = "MoviesReviewsFragment";
+    public static final String TITLE = "Movies Reviews";
     private OnFragmentInteractionListener onFragmentInteractionListener;
 
     public static MoviesReviewsFragment newInstance(final Bundle bundle) {
