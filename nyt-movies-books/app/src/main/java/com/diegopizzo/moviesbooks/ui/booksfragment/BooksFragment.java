@@ -13,7 +13,8 @@ import com.diegopizzo.moviesbooks.config.mvp.AbstractMvpFragment;
 
 public class BooksFragment extends AbstractMvpFragment<BooksFragmentContract.Presenter> implements BooksFragmentContract.View {
 
-    public static final String TAG_BOOKS_FRAGMENT = "BooksFragment";
+    public static final String TAG = "BooksFragment";
+    public static final String TITLE = "BestSellers";
     private OnFragmentInteractionListener onFragmentInteractionListener;
 
     public static BooksFragment newInstance(final Bundle bundle) {
