@@ -1,5 +1,8 @@
 package com.diegopizzo.moviesbooks.business.network.model.movies;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -7,7 +10,20 @@ import com.google.gson.annotations.SerializedName;
  * Created by diegopizzo on 16/11/2017.
  */
 
-public class Result {
+public class Result implements Parcelable {
+
+    public static final Parcelable.Creator<Result> CREATOR
+            = new Parcelable.Creator<Result>() {
+        @Override
+        public Result createFromParcel(final Parcel in) {
+            return new Result(in);
+        }
+
+        @Override
+        public Result[] newArray(final int size) {
+            return new Result[size];
+        }
+    };
 
     @SerializedName("display_title")
     @Expose
@@ -18,12 +34,16 @@ public class Result {
     @SerializedName("headline")
     @Expose
     private String headline;
-    @SerializedName("link")
-    @Expose
-    private Link link;
     @SerializedName("multimedia")
     @Expose
     private Multimedia multimedia;
+
+    private Result(final Parcel in) {
+        displayTitle = in.readString();
+        byline = in.readString();
+        headline = in.readString();
+        multimedia = (Multimedia) in.readParcelable(Multimedia.class.getClassLoader());
+    }
 
     public String getDisplayTitle() {
         return displayTitle;
@@ -64,19 +84,6 @@ public class Result {
         return this;
     }
 
-    public Link getLink() {
-        return link;
-    }
-
-    public void setLink(final Link link) {
-        this.link = link;
-    }
-
-    public Result withLink(final Link link) {
-        this.link = link;
-        return this;
-    }
-
     public Multimedia getMultimedia() {
         return multimedia;
     }
@@ -90,4 +97,16 @@ public class Result {
         return this;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(final Parcel dest, final int flags) {
+        dest.writeString(displayTitle);
+        dest.writeString(byline);
+        dest.writeString(headline);
+        dest.writeParcelable(multimedia, flags);
+    }
 }
