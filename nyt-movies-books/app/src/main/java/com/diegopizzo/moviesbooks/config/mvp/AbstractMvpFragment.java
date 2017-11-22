@@ -10,8 +10,11 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.diegopizzo.moviesbooks.R;
+
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -24,7 +27,7 @@ public abstract class AbstractMvpFragment<P extends MvpPresenter> extends Fragme
     @Inject
     protected P presenter;
     @Nullable
-    //@BindView(R.id.progressBar)
+    @BindView(R.id.progressBar)
     protected ProgressBar progressBar;
     private Unbinder unbinder;
 
