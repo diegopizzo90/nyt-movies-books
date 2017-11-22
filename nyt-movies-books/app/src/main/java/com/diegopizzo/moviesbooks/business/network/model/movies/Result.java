@@ -12,30 +12,12 @@ public class Result {
     @SerializedName("display_title")
     @Expose
     private String displayTitle;
-    @SerializedName("mpaa_rating")
-    @Expose
-    private String mpaaRating;
-    @SerializedName("critics_pick")
-    @Expose
-    private int criticsPick;
     @SerializedName("byline")
     @Expose
     private String byline;
     @SerializedName("headline")
     @Expose
     private String headline;
-    @SerializedName("summary_short")
-    @Expose
-    private String summaryShort;
-    @SerializedName("publication_date")
-    @Expose
-    private String publicationDate;
-    @SerializedName("opening_date")
-    @Expose
-    private String openingDate;
-    @SerializedName("date_updated")
-    @Expose
-    private String dateUpdated;
     @SerializedName("link")
     @Expose
     private Link link;
@@ -53,32 +35,6 @@ public class Result {
 
     public Result withDisplayTitle(final String displayTitle) {
         this.displayTitle = displayTitle;
-        return this;
-    }
-
-    public String getMpaaRating() {
-        return mpaaRating;
-    }
-
-    public void setMpaaRating(final String mpaaRating) {
-        this.mpaaRating = mpaaRating;
-    }
-
-    public Result withMpaaRating(final String mpaaRating) {
-        this.mpaaRating = mpaaRating;
-        return this;
-    }
-
-    public int getCriticsPick() {
-        return criticsPick;
-    }
-
-    public void setCriticsPick(final int criticsPick) {
-        this.criticsPick = criticsPick;
-    }
-
-    public Result withCriticsPick(final int criticsPick) {
-        this.criticsPick = criticsPick;
         return this;
     }
 
@@ -105,58 +61,6 @@ public class Result {
 
     public Result withHeadline(final String headline) {
         this.headline = headline;
-        return this;
-    }
-
-    public String getSummaryShort() {
-        return summaryShort;
-    }
-
-    public void setSummaryShort(final String summaryShort) {
-        this.summaryShort = summaryShort;
-    }
-
-    public Result withSummaryShort(final String summaryShort) {
-        this.summaryShort = summaryShort;
-        return this;
-    }
-
-    public String getPublicationDate() {
-        return publicationDate;
-    }
-
-    public void setPublicationDate(final String publicationDate) {
-        this.publicationDate = publicationDate;
-    }
-
-    public Result withPublicationDate(final String publicationDate) {
-        this.publicationDate = publicationDate;
-        return this;
-    }
-
-    public String getOpeningDate() {
-        return openingDate;
-    }
-
-    public void setOpeningDate(final String openingDate) {
-        this.openingDate = openingDate;
-    }
-
-    public Result withOpeningDate(final String openingDate) {
-        this.openingDate = openingDate;
-        return this;
-    }
-
-    public String getDateUpdated() {
-        return dateUpdated;
-    }
-
-    public void setDateUpdated(final String dateUpdated) {
-        this.dateUpdated = dateUpdated;
-    }
-
-    public Result withDateUpdated(final String dateUpdated) {
-        this.dateUpdated = dateUpdated;
         return this;
     }
 

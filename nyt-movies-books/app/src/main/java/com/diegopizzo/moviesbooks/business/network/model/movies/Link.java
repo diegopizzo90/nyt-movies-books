@@ -8,29 +8,13 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class Link {
-
-    @SerializedName("type")
-    @Expose
-    private String type;
+    
     @SerializedName("url")
     @Expose
     private String url;
     @SerializedName("suggested_link_text")
     @Expose
     private String suggestedLinkText;
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(final String type) {
-        this.type = type;
-    }
-
-    public Link withType(final String type) {
-        this.type = type;
-        return this;
-    }
 
     public String getUrl() {
         return url;

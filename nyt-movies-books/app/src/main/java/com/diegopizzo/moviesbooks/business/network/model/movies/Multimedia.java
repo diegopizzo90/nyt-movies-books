@@ -9,20 +9,53 @@ import com.google.gson.annotations.SerializedName;
 
 public class Multimedia {
 
-    @SerializedName("resource")
+    @SerializedName("src")
     @Expose
-    private Resource resource;
+    private String src;
+    @SerializedName("width")
+    @Expose
+    private int width;
+    @SerializedName("height")
+    @Expose
+    private int height;
 
-    public Resource getResource() {
-        return resource;
+    public String getSrc() {
+        return src;
     }
 
-    public void setResource(final Resource resource) {
-        this.resource = resource;
+    public void setSrc(final String src) {
+        this.src = src;
     }
 
-    public Multimedia withResource(final Resource resource) {
-        this.resource = resource;
+    public Multimedia withSrc(final String src) {
+        this.src = src;
         return this;
     }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(final int width) {
+        this.width = width;
+    }
+
+    public Multimedia withWidth(final int width) {
+        this.width = width;
+        return this;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(final int height) {
+        this.height = height;
+    }
+
+    public Multimedia withHeight(final int height) {
+        this.height = height;
+        return this;
+    }
+
 }
