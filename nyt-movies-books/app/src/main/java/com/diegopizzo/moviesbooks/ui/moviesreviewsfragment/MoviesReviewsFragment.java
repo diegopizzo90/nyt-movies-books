@@ -2,6 +2,7 @@ package com.diegopizzo.moviesbooks.ui.moviesreviewsfragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
@@ -12,9 +13,13 @@ import android.view.ViewGroup;
 
 import com.diegopizzo.moviesbooks.R;
 import com.diegopizzo.moviesbooks.business.network.model.movies.Movies;
+import com.diegopizzo.moviesbooks.business.network.model.movies.Result;
 import com.diegopizzo.moviesbooks.config.MoviesBooksApplication;
 import com.diegopizzo.moviesbooks.config.mvp.AbstractMvpFragment;
 import com.diegopizzo.moviesbooks.ui.EndlessRecyclerViewScrollListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -27,12 +32,13 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
 
     public static final String TAG = "MoviesReviewsFragment";
     public static final String TITLE = "Movies Reviews";
-    private static final String BUNDLE_MOVIES_LIST = "bundleMoviesList";
+    public static final String BUNDLE_MOVIES_LIST = "bundleMoviesList";
     @BindView(R.id.moviesReclyclerView)
     RecyclerView moviesReclyclerView;
     private OnFragmentInteractionListener onFragmentInteractionListener;
     private EndlessRecyclerViewScrollListener scrollListener;
     private MoviesReviewsAdapter moviesReviewsAdapter;
+    private List<Result> resultList;
 
     public static MoviesReviewsFragment newInstance(final Bundle bundle) {
         final MoviesReviewsFragment moviesReviewsFragment = new MoviesReviewsFragment();
@@ -42,26 +48,40 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
         return moviesReviewsFragment;
     }
 
+    @Override
+    public void onCreate(@Nullable final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        moviesReviewsAdapter = new MoviesReviewsAdapter(getContext());
+        if (savedInstanceState == null) {
+            presenter.moviesReviews(0);
+        }
+    }
+
     @Nullable
     @Override
     public View onCreateView(final LayoutInflater inflater, @Nullable final ViewGroup container, final Bundle savedInstanceState) {
-        final View view = super.onCreateView(inflater, container, savedInstanceState);
-
-        setRecyclerView();
-        presenter.moviesReviews(0);
-
-        return view;
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
-    public void onSaveInstanceState(final Bundle outState) {
-        super.onSaveInstanceState(outState);
-        //outState.putParcelableArrayList(BUNDLE_MOVIES_LIST, (ArrayList<? extends Parcelable>) results);
+    public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        setRecyclerView();
     }
 
     @Override
     public void onActivityCreated(@Nullable final Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        if (savedInstanceState != null) {
+            resultList = savedInstanceState.getParcelableArrayList(BUNDLE_MOVIES_LIST);
+            moviesReviewsAdapter.swapItems(resultList);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(final Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelableArrayList(BUNDLE_MOVIES_LIST, (ArrayList<? extends Parcelable>) resultList);
     }
 
     private void setRecyclerView() {
@@ -70,7 +90,6 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
                 OrientationHelper.VERTICAL);
         // Attach the layout manager to the recycler view
         moviesReclyclerView.setLayoutManager(staggeredGridLayoutManager);
-        moviesReviewsAdapter = new MoviesReviewsAdapter(getContext());
         moviesReclyclerView.setAdapter(moviesReviewsAdapter);
 
         scrollListener = new EndlessRecyclerViewScrollListener(staggeredGridLayoutManager) {
@@ -86,7 +105,8 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
     @Override
     public void setDataOnRecyclerView(final Movies movies) {
         if (movies != null) {
-            moviesReviewsAdapter.swapItems(movies.getResults());
+            setResultList(movies.getResults());
+            moviesReviewsAdapter.swapItems(resultList);
         }
     }
 
@@ -117,6 +137,10 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
     public void onDetach() {
         super.onDetach();
         onFragmentInteractionListener = null;
+    }
+
+    public void setResultList(final List<Result> resultList) {
+        this.resultList = resultList;
     }
 
     public interface OnFragmentInteractionListener {
