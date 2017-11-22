@@ -10,7 +10,8 @@ import com.diegopizzo.moviesbooks.R;
 import com.diegopizzo.moviesbooks.ui.booksfragment.BooksFragment;
 import com.diegopizzo.moviesbooks.ui.moviesreviewsfragment.MoviesReviewsFragment;
 
-public class MainActivity extends AppCompatActivity implements MoviesReviewsFragment.OnFragmentInteractionListener, BooksFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements MoviesReviewsFragment.OnFragmentInteractionListener,
+        BooksFragment.OnFragmentInteractionListener {
 
 
     private ViewPager mViewPager;
@@ -22,14 +23,11 @@ public class MainActivity extends AppCompatActivity implements MoviesReviewsFrag
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (null == savedInstanceState) {
-            setToolbar();
-            setViewPager();
-        }
+        setToolbar();
+        setViewPager();
     }
-    
-    public void setViewPager() {
 
+    public void setViewPager() {
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mViewPagerAdapter);
