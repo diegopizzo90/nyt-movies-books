@@ -77,6 +77,10 @@ public class MoviesReviewsAdapter extends RecyclerView.Adapter<MoviesReviewsAdap
         notifyItemRangeChanged(curSize, resultList.size() - 1);
     }
 
+    public List<Result> getResultList() {
+        return resultList;
+    }
+
     // Provide a direct reference to each of the views within a data item
     // Used to cache the views within the item layout for fast access
     public class ViewHolder extends RecyclerView.ViewHolder {

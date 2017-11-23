@@ -38,7 +38,6 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
     private OnFragmentInteractionListener onFragmentInteractionListener;
     private EndlessRecyclerViewScrollListener scrollListener;
     private MoviesReviewsAdapter moviesReviewsAdapter;
-    private List<Result> resultList;
 
     public static MoviesReviewsFragment newInstance(final Bundle bundle) {
         final MoviesReviewsFragment moviesReviewsFragment = new MoviesReviewsFragment();
@@ -73,7 +72,7 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
     public void onActivityCreated(@Nullable final Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (savedInstanceState != null) {
-            resultList = savedInstanceState.getParcelableArrayList(BUNDLE_MOVIES_LIST);
+            final List<Result> resultList = savedInstanceState.getParcelableArrayList(BUNDLE_MOVIES_LIST);
             moviesReviewsAdapter.swapItems(resultList);
         }
     }
@@ -81,7 +80,7 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
     @Override
     public void onSaveInstanceState(final Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelableArrayList(BUNDLE_MOVIES_LIST, (ArrayList<? extends Parcelable>) resultList);
+        outState.putParcelableArrayList(BUNDLE_MOVIES_LIST, (ArrayList<? extends Parcelable>) moviesReviewsAdapter.getResultList());
     }
 
     private void setRecyclerView() {
@@ -105,8 +104,7 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
     @Override
     public void setDataOnRecyclerView(final Movies movies) {
         if (movies != null) {
-            setResultList(movies.getResults());
-            moviesReviewsAdapter.swapItems(resultList);
+            moviesReviewsAdapter.swapItems(movies.getResults());
         }
     }
 
@@ -139,9 +137,6 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
         onFragmentInteractionListener = null;
     }
 
-    public void setResultList(final List<Result> resultList) {
-        this.resultList = resultList;
-    }
 
     public interface OnFragmentInteractionListener {
     }
