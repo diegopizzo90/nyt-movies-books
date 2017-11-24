@@ -3,40 +3,23 @@ package com.diegopizzo.moviesbooks.business.network.model.books;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by diegopizzo on 18/11/2017.
  */
 
 public class ListResults {
 
-    @SerializedName("list_id")
-    @Expose
-    private int listId;
     @SerializedName("list_name")
     @Expose
     private String listName;
     @SerializedName("display_name")
     @Expose
     private String displayName;
-    @SerializedName("updated")
+    @SerializedName("books")
     @Expose
-    private String updated;
-    @SerializedName("list_image")
-    @Expose
-    private String listImage;
-
-    public int getListId() {
-        return listId;
-    }
-
-    public void setListId(final int listId) {
-        this.listId = listId;
-    }
-
-    public ListResults withListId(final int listId) {
-        this.listId = listId;
-        return this;
-    }
+    private List<Book> books;
 
     public String getListName() {
         return listName;
@@ -64,31 +47,11 @@ public class ListResults {
         return this;
     }
 
-    public String getUpdated() {
-        return updated;
+    public List<Book> getBooks() {
+        return books;
     }
 
-    public void setUpdated(final String updated) {
-        this.updated = updated;
+    public void setBooks(final List<Book> books) {
+        this.books = books;
     }
-
-    public ListResults withUpdated(final String updated) {
-        this.updated = updated;
-        return this;
-    }
-
-    public String getListImage() {
-        return listImage;
-    }
-
-    public void setListImage(final String listImage) {
-        this.listImage = listImage;
-    }
-
-    public ListResults withListImage(final String listImage) {
-        this.listImage = listImage;
-        return this;
-    }
-
-
 }
