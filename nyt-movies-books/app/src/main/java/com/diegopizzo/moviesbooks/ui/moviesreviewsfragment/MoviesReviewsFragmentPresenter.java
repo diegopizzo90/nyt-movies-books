@@ -39,12 +39,16 @@ public class MoviesReviewsFragmentPresenter implements MoviesReviewsFragmentCont
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(final Disposable disposable) throws Exception {
-                        view.showLoading();
+                        if (offset == 0) {
+                            view.showLoading();
+                        }
+                        view.showSwipyRefreshLayout();
                     }
                 })
                 .doFinally(new Action() {
                     @Override
                     public void run() throws Exception {
+                        view.hideSwipyRefreshLayout();
                         view.showContent();
                     }
                 })
@@ -58,6 +62,8 @@ public class MoviesReviewsFragmentPresenter implements MoviesReviewsFragmentCont
                     @Override
                     public void accept(final Throwable throwable) throws Exception {
                         view.showMessage("Errore " + throwable.getMessage());
+                        view.hideSwipyRefreshLayout();
+                        view.showContent();
                         Log.e("error", throwable.getMessage());
                     }
                 });
