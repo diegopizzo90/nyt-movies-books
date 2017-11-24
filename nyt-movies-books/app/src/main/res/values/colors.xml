@@ -5,6 +5,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorPrimaryMyTheme">#2e7d32</color>
     <color name="colorPrimaryDarkMyTheme">#33691e</color>
-    <color name="colorAccentMyTheme">#ccff90</color>
+    <color name="colorAccentMyTheme">#45b94b</color>
     <color name="secondary_text_lightMyTheme">@android:color/secondary_text_light</color>
 </resources>
