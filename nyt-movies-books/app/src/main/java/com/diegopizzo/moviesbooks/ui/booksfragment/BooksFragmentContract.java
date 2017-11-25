@@ -1,5 +1,6 @@
 package com.diegopizzo.moviesbooks.ui.booksfragment;
 
+import com.diegopizzo.moviesbooks.business.network.model.books.BestsellerList;
 import com.diegopizzo.moviesbooks.config.mvp.MvpPresenter;
 import com.diegopizzo.moviesbooks.config.mvp.MvpView;
 
@@ -10,8 +11,18 @@ import com.diegopizzo.moviesbooks.config.mvp.MvpView;
 public class BooksFragmentContract {
 
     interface View extends MvpView {
+        void showLoadingBestSeller();
+
+        void showContentBestSeller();
+
+        void showSwipyRefreshLayout();
+
+        void hideSwipyRefreshLayout();
+
+        void setDataOnRecyclerView(BestsellerList bestsellerList);
     }
 
     interface Presenter extends MvpPresenter {
+        void bestSellers(boolean refresh);
     }
 }
