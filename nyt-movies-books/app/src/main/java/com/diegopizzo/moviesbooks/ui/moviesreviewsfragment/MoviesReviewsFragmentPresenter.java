@@ -40,7 +40,7 @@ public class MoviesReviewsFragmentPresenter implements MoviesReviewsFragmentCont
                     @Override
                     public void accept(final Disposable disposable) throws Exception {
                         if (offset == 0 && !refresh) {
-                            view.showLoading();
+                            view.showLoadingMovies();
                         }
                         view.showSwipyRefreshLayout();
                     }
@@ -49,25 +49,30 @@ public class MoviesReviewsFragmentPresenter implements MoviesReviewsFragmentCont
                     @Override
                     public void run() throws Exception {
                         view.hideSwipyRefreshLayout();
-                        view.showContent();
+                        view.showContentMovies();
                     }
                 })
                 .subscribe(new Consumer<Movies>() {
                     @Override
                     public void accept(final Movies movies) throws Exception {
-                        if (refresh) {
-                            view.refreshDataOnRecyclerView(movies);
+                        if (movies != null) {
+                            if (refresh) {
+                                view.refreshDataOnRecyclerView(movies);
+                            } else {
+                                view.setDataOnRecyclerView(movies);
+                            }
+                            Log.i("Movies", "Ok - Offset: " + offset + " Refresh: " + refresh);
                         } else {
-                            view.setDataOnRecyclerView(movies);
+                            Log.i("Movies", "It's empty!");
+
                         }
-                        Log.i("info", "Ok - Offset: " + offset + " Refresh: " + refresh);
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(final Throwable throwable) throws Exception {
                         view.showMessage("Errore " + throwable.getMessage());
                         view.hideSwipyRefreshLayout();
-                        view.showContent();
+                        view.showContentMovies();
                         Log.e("error", throwable.getMessage());
                     }
                 });

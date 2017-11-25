@@ -18,6 +18,10 @@ public class MoviesReviewsFragmentContract {
         void showSwipyRefreshLayout();
 
         void hideSwipyRefreshLayout();
+
+        void showContentMovies();
+
+        void showLoadingMovies();
     }
 
     interface Presenter extends MvpPresenter {

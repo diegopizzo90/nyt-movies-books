@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.diegopizzo.moviesbooks.R;
 import com.diegopizzo.moviesbooks.business.network.model.movies.Movies;
@@ -38,8 +39,10 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
     public static final String BUNDLE_MOVIES_LIST = "bundleMoviesList";
     @BindView(R.id.moviesReclyclerView)
     RecyclerView moviesReclyclerView;
-    @BindView(R.id.swipyrefreshlayout)
+    @BindView(R.id.swipyrefreshlayoutMovies)
     SwipyRefreshLayout swipyRefreshLayout;
+    @BindView(R.id.progressBarMovies)
+    ProgressBar progressBarMovies;
     private OnFragmentInteractionListener onFragmentInteractionListener;
     private EndlessRecyclerViewScrollListener scrollListener;
     private MoviesReviewsAdapter moviesReviewsAdapter;
@@ -71,7 +74,7 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
             presenter.moviesReviews(0, false);
         }
         setRecyclerView();
-        setSwypeRefreshLayoutColors();
+        setSwypeRefreshLayout();
     }
 
     @Override
@@ -107,7 +110,7 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
         moviesReclyclerView.addOnScrollListener(scrollListener);
     }
 
-    private void setSwypeRefreshLayoutColors() {
+    private void setSwypeRefreshLayout() {
         swipyRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
@@ -118,23 +121,19 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
             @Override
             public void onRefresh(final SwipyRefreshLayoutDirection direction) {
                 presenter.moviesReviews(0, true);
-                Log.i("refresh", "refresh");
+                Log.i("Movies", "refresh");
             }
         });
     }
 
     @Override
     public void setDataOnRecyclerView(final Movies movies) {
-        if (movies != null) {
-            moviesReviewsAdapter.swapItems(movies.getResults());
-        }
+        moviesReviewsAdapter.swapItems(movies.getResults());
     }
 
     @Override
     public void refreshDataOnRecyclerView(final Movies movies) {
-        if (movies != null) {
-            moviesReviewsAdapter.refreshItems(movies.getResults());
-        }
+        moviesReviewsAdapter.refreshItems(movies.getResults());
     }
 
     @Override
@@ -145,6 +144,16 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
     @Override
     public void hideSwipyRefreshLayout() {
         swipyRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void showLoadingMovies() {
+        progressBarMovies.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showContentMovies() {
+        progressBarMovies.setVisibility(View.GONE);
     }
 
     @Override

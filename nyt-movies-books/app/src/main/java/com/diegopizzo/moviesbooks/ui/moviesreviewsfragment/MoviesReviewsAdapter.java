@@ -39,10 +39,10 @@ public class MoviesReviewsAdapter extends RecyclerView.Adapter<MoviesReviewsAdap
         final Context context = parent.getContext();
         final LayoutInflater inflater = LayoutInflater.from(context);
         // Inflate the custom layout
-        final View repoView = inflater.inflate(R.layout.movie_review_item, parent, false);
+        final View movieItemView = inflater.inflate(R.layout.movie_review_item, parent, false);
 
         // Return a new holder instance
-        return new ViewHolder(repoView);
+        return new ViewHolder(movieItemView);
     }
 
     // Involves populating data into the item through holder
