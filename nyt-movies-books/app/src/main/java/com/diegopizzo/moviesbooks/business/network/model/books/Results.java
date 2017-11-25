@@ -19,7 +19,7 @@ public class Results {
     private String publishedDate;
     @SerializedName("lists")
     @Expose
-    private List<ListResults> listResults = null;
+    private List<ListResults> listResults;
 
     public String getBestsellersDate() {
         return bestsellersDate;
