@@ -29,7 +29,7 @@ public class MoviesReviewsFragmentPresenter implements MoviesReviewsFragmentCont
 
 
     @Override
-    public void moviesReviews(final Integer offset) {
+    public void moviesReviews(final Integer offset, final boolean refresh) {
 
         final Observable<Movies> moviesObservable = moviesInteractor.getMoviesReviews(ServiceConstants.ResourceTypeMovies.ALL,
                 offset, ServiceConstants.OrderMovies.BY_PUBBLICATION_DATE);
@@ -39,7 +39,7 @@ public class MoviesReviewsFragmentPresenter implements MoviesReviewsFragmentCont
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(final Disposable disposable) throws Exception {
-                        if (offset == 0) {
+                        if (offset == 0 && !refresh) {
                             view.showLoading();
                         }
                         view.showSwipyRefreshLayout();
@@ -55,8 +55,12 @@ public class MoviesReviewsFragmentPresenter implements MoviesReviewsFragmentCont
                 .subscribe(new Consumer<Movies>() {
                     @Override
                     public void accept(final Movies movies) throws Exception {
-                        view.setDataOnRecyclerView(movies);
-                        Log.i("info", "Ok");
+                        if (refresh) {
+                            view.refreshDataOnRecyclerView(movies);
+                        } else {
+                            view.setDataOnRecyclerView(movies);
+                        }
+                        Log.i("info", "Ok - Offset: " + offset + " Refresh: " + refresh);
                     }
                 }, new Consumer<Throwable>() {
                     @Override

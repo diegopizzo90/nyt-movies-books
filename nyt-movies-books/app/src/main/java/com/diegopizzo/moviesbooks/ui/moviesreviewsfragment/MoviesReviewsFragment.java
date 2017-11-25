@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.diegopizzo.moviesbooks.config.MoviesBooksApplication;
 import com.diegopizzo.moviesbooks.config.mvp.AbstractMvpFragment;
 import com.diegopizzo.moviesbooks.ui.EndlessRecyclerViewScrollListener;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
+import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +68,7 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
     public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if (savedInstanceState == null) {
-            presenter.moviesReviews(0);
+            presenter.moviesReviews(0, false);
         }
         setRecyclerView();
         setSwypeRefreshLayoutColors();
@@ -98,7 +100,7 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
         scrollListener = new EndlessRecyclerViewScrollListener(staggeredGridLayoutManager) {
             @Override
             public void onLoadMore(final int page, final int totalItemsCount, final RecyclerView view) {
-                presenter.moviesReviews(totalItemsCount);
+                presenter.moviesReviews(totalItemsCount, false);
             }
         };
 
@@ -110,12 +112,28 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
+
+
+        swipyRefreshLayout.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh(final SwipyRefreshLayoutDirection direction) {
+                presenter.moviesReviews(0, true);
+                Log.i("refresh", "refresh");
+            }
+        });
     }
 
     @Override
     public void setDataOnRecyclerView(final Movies movies) {
         if (movies != null) {
             moviesReviewsAdapter.swapItems(movies.getResults());
+        }
+    }
+
+    @Override
+    public void refreshDataOnRecyclerView(final Movies movies) {
+        if (movies != null) {
+            moviesReviewsAdapter.refreshItems(movies.getResults());
         }
     }
 

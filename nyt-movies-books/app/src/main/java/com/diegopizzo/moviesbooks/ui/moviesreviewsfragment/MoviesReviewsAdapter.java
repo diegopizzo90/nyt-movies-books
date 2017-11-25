@@ -77,6 +77,12 @@ public class MoviesReviewsAdapter extends RecyclerView.Adapter<MoviesReviewsAdap
         notifyItemRangeChanged(curSize, resultList.size() - 1);
     }
 
+    public void refreshItems(final List<Result> results) {
+        results.clear();
+        resultList.addAll(results);
+        notifyDataSetChanged();
+    }
+
     public List<Result> getResultList() {
         return resultList;
     }

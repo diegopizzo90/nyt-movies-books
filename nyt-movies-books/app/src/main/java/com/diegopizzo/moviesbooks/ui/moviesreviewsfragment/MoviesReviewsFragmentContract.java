@@ -13,12 +13,14 @@ public class MoviesReviewsFragmentContract {
     interface View extends MvpView {
         void setDataOnRecyclerView(Movies movies);
 
+        void refreshDataOnRecyclerView(Movies movies);
+
         void showSwipyRefreshLayout();
 
         void hideSwipyRefreshLayout();
     }
 
     interface Presenter extends MvpPresenter {
-        void moviesReviews(Integer offset);
+        void moviesReviews(Integer offset, boolean refresh);
     }
 }
