@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 
 import com.bumptech.glide.Glide;
 import com.diegopizzo.moviesbooks.R;
@@ -43,6 +44,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         final Book book = bookList.get(position);
         Glide.with(mContext).load(book.getBookImage()).into(holder.imageBook);
+        holder.ratingBar.setRating(book.getRank());
     }
 
     @Override
@@ -62,10 +64,12 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imageBook;
+        RatingBar ratingBar;
 
         public ViewHolder(final View itemView) {
             super(itemView);
             imageBook = (ImageView) itemView.findViewById(R.id.bookImageView);
+            ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBarBooks);
         }
     }
 

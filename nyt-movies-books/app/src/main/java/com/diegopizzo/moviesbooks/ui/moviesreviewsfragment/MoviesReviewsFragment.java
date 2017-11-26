@@ -22,7 +22,8 @@ import com.diegopizzo.moviesbooks.ui.EndlessRecyclerViewScrollListener;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 
-import java.util.ArrayList;
+import org.parceler.Parcels;
+
 import java.util.List;
 
 import butterknife.BindView;
@@ -81,7 +82,8 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
     public void onActivityCreated(@Nullable final Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (savedInstanceState != null) {
-            final List<Result> resultList = savedInstanceState.getParcelableArrayList(BUNDLE_MOVIES_LIST);
+            final Parcelable listParcelable = savedInstanceState.getParcelable(BUNDLE_MOVIES_LIST);
+            final List<Result> resultList = Parcels.unwrap(listParcelable);
             moviesReviewsAdapter.swapItems(resultList);
         }
     }
@@ -89,7 +91,8 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
     @Override
     public void onSaveInstanceState(final Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelableArrayList(BUNDLE_MOVIES_LIST, (ArrayList<? extends Parcelable>) moviesReviewsAdapter.getResultList());
+        final Parcelable listParcelable = Parcels.wrap(moviesReviewsAdapter.getResultList());
+        outState.putParcelable(BUNDLE_MOVIES_LIST, listParcelable);
     }
 
     private void setRecyclerView() {
