@@ -9,25 +9,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class BestsellerList {
 
-    @SerializedName("num_results")
-    @Expose
-    private int numResults;
     @SerializedName("results")
     @Expose
     private Results results;
-
-    public int getNumResults() {
-        return numResults;
-    }
-
-    public void setNumResults(final int numResults) {
-        this.numResults = numResults;
-    }
-
-    public BestsellerList withNumResults(final int numResults) {
-        this.numResults = numResults;
-        return this;
-    }
 
     public Results getResults() {
         return results;

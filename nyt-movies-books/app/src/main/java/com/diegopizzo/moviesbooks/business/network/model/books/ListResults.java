@@ -3,23 +3,26 @@ package com.diegopizzo.moviesbooks.business.network.model.books;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
+
 import java.util.List;
 
 /**
  * Created by diegopizzo on 18/11/2017.
  */
 
+@Parcel
 public class ListResults {
 
     @SerializedName("list_name")
     @Expose
-    private String listName;
+    String listName;
     @SerializedName("display_name")
     @Expose
-    private String displayName;
+    String displayName;
     @SerializedName("books")
     @Expose
-    private List<Book> books;
+    List<Book> books;
 
     public String getListName() {
         return listName;
