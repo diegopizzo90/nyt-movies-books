@@ -26,13 +26,14 @@ public class BooksFragment extends AbstractMvpFragment<BooksFragmentContract.Pre
 
     public static final String TAG = "BooksFragment";
     public static final String TITLE = "BestSellers";
-    @BindView(R.id.booksRecyclerView)
-    RecyclerView booksRecyclerView;
+    @BindView(R.id.bestSellerRecyclerView)
+    RecyclerView bestSellerRecyclerView;
     @BindView(R.id.progressBarBestSeller)
     ProgressBar progressBarBestSeller;
     @BindView(R.id.swipyrefreshlayoutBestSellers)
     SwipyRefreshLayout swipyRefreshLayout;
     private BestSellerListAdapter bestSellerListAdapter;
+    private BookListAdapter bookListAdapter;
     private OnFragmentInteractionListener onFragmentInteractionListener;
 
     public static BooksFragment newInstance(final Bundle bundle) {
@@ -46,7 +47,7 @@ public class BooksFragment extends AbstractMvpFragment<BooksFragmentContract.Pre
     @Override
     public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bestSellerListAdapter = new BestSellerListAdapter(getContext());
+        bestSellerListAdapter = new BestSellerListAdapter();
     }
 
     @Override
@@ -55,8 +56,8 @@ public class BooksFragment extends AbstractMvpFragment<BooksFragmentContract.Pre
         if (savedInstanceState == null) {
             presenter.bestSellers(false);
         }
-        setRecyclerView();
         setSwypeRefreshLayout();
+        setBestSellerRecyclerView();
     }
 
     @Override
@@ -64,12 +65,12 @@ public class BooksFragment extends AbstractMvpFragment<BooksFragmentContract.Pre
         super.onActivityCreated(savedInstanceState);
     }
 
-    private void setRecyclerView() {
+    private void setBestSellerRecyclerView() {
         // First param is number of columns and second param is orientation i.e Vertical or Horizontal
         final GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1);
         // Attach the layout manager to the recycler view
-        booksRecyclerView.setLayoutManager(gridLayoutManager);
-        booksRecyclerView.setAdapter(bestSellerListAdapter);
+        bestSellerRecyclerView.setLayoutManager(gridLayoutManager);
+        bestSellerRecyclerView.setAdapter(bestSellerListAdapter);
     }
 
     private void setSwypeRefreshLayout() {
