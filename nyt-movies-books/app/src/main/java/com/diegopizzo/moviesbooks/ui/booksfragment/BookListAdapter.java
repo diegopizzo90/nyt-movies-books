@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.diegopizzo.moviesbooks.R;
@@ -43,14 +42,7 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         final Book book = bookList.get(position);
-        final TextView titleBookTextView = holder.titleBook;
-        titleBookTextView.setText(book.getTitle());
-        final ImageView imageBookImageView = holder.imageBook;
-        Glide.with(mContext).load(book.getBookImage()).into(imageBookImageView);
-        imageBookImageView.setMinimumHeight(book.getBookImageHeight());
-        imageBookImageView.setMinimumWidth(book.getBookImageWidth());
-        final TextView authorBookTextView = holder.authorBook;
-        authorBookTextView.setText(book.getAuthor());
+        Glide.with(mContext).load(book.getBookImage()).into(holder.imageBook);
     }
 
     @Override
@@ -69,15 +61,11 @@ public class BookListAdapter extends RecyclerView.Adapter<BookListAdapter.ViewHo
     // Used to cache the views within the item layout for fast access
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView titleBook;
         ImageView imageBook;
-        TextView authorBook;
 
         public ViewHolder(final View itemView) {
             super(itemView);
-            titleBook = (TextView) itemView.findViewById(R.id.bookTitleTextView);
             imageBook = (ImageView) itemView.findViewById(R.id.bookImageView);
-            authorBook = (TextView) itemView.findViewById(R.id.authorBookTextView);
         }
     }
 
