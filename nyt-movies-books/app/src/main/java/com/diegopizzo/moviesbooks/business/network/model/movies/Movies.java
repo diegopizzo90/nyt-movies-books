@@ -16,7 +16,7 @@ public class Movies {
     private int numResults;
     @SerializedName("results")
     @Expose
-    private List<Result> results = null;
+    private List<Result> results;
 
     public int getNumResults() {
         return numResults;

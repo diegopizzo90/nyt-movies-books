@@ -1,49 +1,29 @@
 package com.diegopizzo.moviesbooks.business.network.model.movies;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import org.parceler.Parcel;
 
 /**
  * Created by diegopizzo on 16/11/2017.
  */
 
-public class Result implements Parcelable {
-
-    public static final Parcelable.Creator<Result> CREATOR
-            = new Parcelable.Creator<Result>() {
-        @Override
-        public Result createFromParcel(final Parcel in) {
-            return new Result(in);
-        }
-
-        @Override
-        public Result[] newArray(final int size) {
-            return new Result[size];
-        }
-    };
+@Parcel
+public class Result {
 
     @SerializedName("display_title")
     @Expose
-    private String displayTitle;
+    String displayTitle;
     @SerializedName("byline")
     @Expose
-    private String byline;
+    String byline;
     @SerializedName("headline")
     @Expose
-    private String headline;
+    String headline;
     @SerializedName("multimedia")
     @Expose
-    private Multimedia multimedia;
-
-    private Result(final Parcel in) {
-        displayTitle = in.readString();
-        byline = in.readString();
-        headline = in.readString();
-        multimedia = (Multimedia) in.readParcelable(Multimedia.class.getClassLoader());
-    }
+    Multimedia multimedia;
 
     public String getDisplayTitle() {
         return displayTitle;
@@ -95,18 +75,5 @@ public class Result implements Parcelable {
     public Result withMultimedia(final Multimedia multimedia) {
         this.multimedia = multimedia;
         return this;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(final Parcel dest, final int flags) {
-        dest.writeString(displayTitle);
-        dest.writeString(byline);
-        dest.writeString(headline);
-        dest.writeParcelable(multimedia, flags);
     }
 }
