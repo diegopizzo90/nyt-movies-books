@@ -69,6 +69,9 @@ dependencies {
     implementation 'org.parceler:parceler-api:1.1.9'
     annotationProcessor 'org.parceler:parceler:1.1.9'
 
+    //https://github.com/DreaminginCodeZH/MaterialRatingBar
+    implementation 'me.zhanghai.android.materialratingbar:library:1.2.0'
+
     //TEST
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
