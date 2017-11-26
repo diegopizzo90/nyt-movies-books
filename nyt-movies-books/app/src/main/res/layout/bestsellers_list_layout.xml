@@ -21,7 +21,7 @@
         app:srl_direction="top">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/booksRecyclerView"
+            android:id="@+id/bestSellerRecyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
