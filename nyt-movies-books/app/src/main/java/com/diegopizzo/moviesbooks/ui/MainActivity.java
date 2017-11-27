@@ -5,6 +5,8 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 
 import com.diegopizzo.moviesbooks.R;
 import com.diegopizzo.moviesbooks.ui.booksfragment.BooksFragment;
@@ -40,4 +42,13 @@ public class MainActivity extends AppCompatActivity implements MoviesReviewsFrag
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(final Menu menu) {
+        final MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.option_menu_movies, menu);
+        return true;
+    }
+
+
 }

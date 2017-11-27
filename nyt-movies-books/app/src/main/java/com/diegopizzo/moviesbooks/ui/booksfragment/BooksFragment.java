@@ -53,6 +53,7 @@ public class BooksFragment extends AbstractMvpFragment<BooksFragmentContract.Pre
     @Override
     public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(false);
         bestSellerListAdapter = new BestSellerListAdapter();
     }
 

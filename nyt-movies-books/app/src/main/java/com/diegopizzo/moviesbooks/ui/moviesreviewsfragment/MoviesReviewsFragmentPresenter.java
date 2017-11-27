@@ -27,12 +27,11 @@ public class MoviesReviewsFragmentPresenter implements MoviesReviewsFragmentCont
         this.view = view;
     }
 
-
     @Override
-    public void moviesReviews(final Integer offset, final boolean refresh) {
+    public void moviesReviews(final Integer offset, final boolean refresh, final ServiceConstants.OrderMovies orderBy) {
 
         final Observable<Movies> moviesObservable = moviesInteractor.getMoviesReviews(ServiceConstants.ResourceTypeMovies.ALL,
-                offset, ServiceConstants.OrderMovies.BY_PUBBLICATION_DATE);
+                offset, orderBy);
 
         final Disposable disposable = moviesObservable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

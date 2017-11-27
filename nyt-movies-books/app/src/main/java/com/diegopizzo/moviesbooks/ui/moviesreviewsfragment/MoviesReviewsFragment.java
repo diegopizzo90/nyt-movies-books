@@ -9,6 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -16,6 +19,7 @@ import android.widget.ProgressBar;
 import com.diegopizzo.moviesbooks.R;
 import com.diegopizzo.moviesbooks.business.network.model.movies.Movies;
 import com.diegopizzo.moviesbooks.business.network.model.movies.Result;
+import com.diegopizzo.moviesbooks.business.network.service.ServiceConstants;
 import com.diegopizzo.moviesbooks.config.MoviesBooksApplication;
 import com.diegopizzo.moviesbooks.config.mvp.AbstractMvpFragment;
 import com.diegopizzo.moviesbooks.ui.EndlessRecyclerViewScrollListener;
@@ -47,6 +51,7 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
     private OnFragmentInteractionListener onFragmentInteractionListener;
     private EndlessRecyclerViewScrollListener scrollListener;
     private MoviesReviewsAdapter moviesReviewsAdapter;
+    private ServiceConstants.OrderMovies orderBy;
 
     public static MoviesReviewsFragment newInstance(final Bundle bundle) {
         final MoviesReviewsFragment moviesReviewsFragment = new MoviesReviewsFragment();
@@ -59,6 +64,8 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
     @Override
     public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+        orderBy = ServiceConstants.OrderMovies.BY_PUBBLICATION_DATE;
         moviesReviewsAdapter = new MoviesReviewsAdapter(getContext());
     }
 
@@ -72,7 +79,7 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
     public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if (savedInstanceState == null) {
-            presenter.moviesReviews(0, false);
+            presenter.moviesReviews(0, false, orderBy);
         }
         setRecyclerView();
         setSwypeRefreshLayout();
@@ -95,6 +102,32 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
         outState.putParcelable(BUNDLE_MOVIES_LIST, listParcelable);
     }
 
+    @Override
+    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.by_opening_date:
+                orderBy = ServiceConstants.OrderMovies.BY_OPENING_DATE;
+                presenter.moviesReviews(0, true, orderBy);
+                return true;
+            case R.id.by_title:
+                orderBy = ServiceConstants.OrderMovies.BY_TITLE;
+                presenter.moviesReviews(0, true, orderBy);
+                return true;
+            case R.id.by_publication_date:
+                orderBy = ServiceConstants.OrderMovies.BY_PUBBLICATION_DATE;
+                presenter.moviesReviews(0, true, orderBy);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
     private void setRecyclerView() {
         // First param is number of columns and second param is orientation i.e Vertical or Horizontal
         final StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2,
@@ -106,7 +139,7 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
         scrollListener = new EndlessRecyclerViewScrollListener(staggeredGridLayoutManager) {
             @Override
             public void onLoadMore(final int page, final int totalItemsCount, final RecyclerView view) {
-                presenter.moviesReviews(totalItemsCount, false);
+                presenter.moviesReviews(totalItemsCount, false, orderBy);
             }
         };
 
@@ -123,7 +156,7 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
         swipyRefreshLayout.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh(final SwipyRefreshLayoutDirection direction) {
-                presenter.moviesReviews(0, true);
+                presenter.moviesReviews(0, true, orderBy);
                 Log.i("Movies", "refresh");
             }
         });

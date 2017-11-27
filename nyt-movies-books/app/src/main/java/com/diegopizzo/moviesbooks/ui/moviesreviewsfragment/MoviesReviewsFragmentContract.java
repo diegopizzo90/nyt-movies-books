@@ -1,6 +1,7 @@
 package com.diegopizzo.moviesbooks.ui.moviesreviewsfragment;
 
 import com.diegopizzo.moviesbooks.business.network.model.movies.Movies;
+import com.diegopizzo.moviesbooks.business.network.service.ServiceConstants;
 import com.diegopizzo.moviesbooks.config.mvp.MvpPresenter;
 import com.diegopizzo.moviesbooks.config.mvp.MvpView;
 
@@ -25,6 +26,6 @@ public class MoviesReviewsFragmentContract {
     }
 
     interface Presenter extends MvpPresenter {
-        void moviesReviews(Integer offset, boolean refresh);
+        void moviesReviews(Integer offset, boolean refresh, ServiceConstants.OrderMovies orderBy);
     }
 }
