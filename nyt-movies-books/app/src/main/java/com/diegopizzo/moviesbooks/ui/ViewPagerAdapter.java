@@ -14,7 +14,7 @@ import com.diegopizzo.moviesbooks.ui.moviesreviewsfragment.MoviesReviewsFragment
 /**
  * FragmentPagerAdapter: This is best when navigating between sibling screens representing a fixed, small number of pages.
  * FragmentStatePagerAdapter: This is best for paging across a collection of objects for which the number of pages is undetermined.
- * It destroys fragments as the user navigates to other pages, minimizing memory usage.
+ *                            It destroys fragments as the user navigates to other pages, minimizing memory usage.
  */
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
@@ -27,9 +27,9 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(final int position) {
         switch (position) {
-            case 0:
+            case MoviesReviewsFragment.VIEW_PAGER_POSITION:
                 return MoviesReviewsFragment.newInstance(null);
-            case 1:
+            case BooksFragment.VIEW_PAGER_POSITION:
                 return BooksFragment.newInstance(null);
         }
         return null;
@@ -43,9 +43,9 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public CharSequence getPageTitle(final int position) {
         switch (position) {
-            case 0:
+            case MoviesReviewsFragment.VIEW_PAGER_POSITION:
                 return MoviesReviewsFragment.TITLE;
-            case 1:
+            case BooksFragment.VIEW_PAGER_POSITION:
                 return BooksFragment.TITLE;
         }
         return super.getPageTitle(position);

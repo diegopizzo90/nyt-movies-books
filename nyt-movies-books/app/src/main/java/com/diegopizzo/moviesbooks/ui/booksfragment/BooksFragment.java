@@ -32,6 +32,7 @@ public class BooksFragment extends AbstractMvpFragment<BooksFragmentContract.Pre
 
     public static final String TAG = "BooksFragment";
     public static final String TITLE = "BestSellers";
+    public static final int VIEW_PAGER_POSITION = 1;
     private static final String BUNDLE_BEST_SELLERS = "BundleBestSellers";
     @BindView(R.id.bestSellerRecyclerView)
     RecyclerView bestSellerRecyclerView;
@@ -53,7 +54,6 @@ public class BooksFragment extends AbstractMvpFragment<BooksFragmentContract.Pre
     @Override
     public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(false);
         bestSellerListAdapter = new BestSellerListAdapter();
     }
 

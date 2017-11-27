@@ -33,6 +33,21 @@ public class MainActivity extends AppCompatActivity implements MoviesReviewsFrag
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mViewPagerAdapter);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(final int position, final float positionOffset, final int positionOffsetPixels) {
+                invalidateOptionsMenu();
+            }
+
+            @Override
+            public void onPageSelected(final int position) {
+                invalidateOptionsMenu();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(final int state) {
+            }
+        });
 
         mTabLayout = (TabLayout) findViewById(R.id.tab);
         mTabLayout.setupWithViewPager(mViewPager);
@@ -47,7 +62,21 @@ public class MainActivity extends AppCompatActivity implements MoviesReviewsFrag
     public boolean onCreateOptionsMenu(final Menu menu) {
         final MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.option_menu_movies, menu);
+        switch (mViewPager.getCurrentItem()) {
+            case MoviesReviewsFragment.VIEW_PAGER_POSITION:
+                setVisibilityItemsMenu(menu, true);
+                break;
+            case BooksFragment.VIEW_PAGER_POSITION:
+                setVisibilityItemsMenu(menu, false);
+                break;
+        }
         return true;
+    }
+
+    private void setVisibilityItemsMenu(final Menu menu, final boolean isVisible) {
+        menu.findItem(R.id.by_opening_date).setVisible(isVisible);
+        menu.findItem(R.id.by_publication_date).setVisible(isVisible);
+        menu.findItem(R.id.by_title).setVisible(isVisible);
     }
 
 

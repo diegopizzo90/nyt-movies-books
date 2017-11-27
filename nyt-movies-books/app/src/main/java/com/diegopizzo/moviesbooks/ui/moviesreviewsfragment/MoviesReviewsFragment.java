@@ -40,6 +40,7 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
         implements MoviesReviewsFragmentContract.View {
 
     public static final String TAG = "MoviesReviewsFragment";
+    public static final int VIEW_PAGER_POSITION = 0;
     public static final String TITLE = "Movies Reviews";
     public static final String BUNDLE_MOVIES_LIST = "bundleMoviesList";
     @BindView(R.id.moviesReclyclerView)
