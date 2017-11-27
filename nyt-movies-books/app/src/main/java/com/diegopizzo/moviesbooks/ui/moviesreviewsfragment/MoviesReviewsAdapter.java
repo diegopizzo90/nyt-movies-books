@@ -78,7 +78,7 @@ public class MoviesReviewsAdapter extends RecyclerView.Adapter<MoviesReviewsAdap
     }
 
     public void refreshItems(final List<Result> results) {
-        results.clear();
+        resultList.clear();
         resultList.addAll(results);
         notifyDataSetChanged();
     }
