@@ -2,6 +2,7 @@ package com.diegopizzo.moviesbooks.ui.itemdetailsactivity;
 
 import android.view.View;
 
+import com.diegopizzo.moviesbooks.R;
 import com.diegopizzo.moviesbooks.config.MoviesBooksApplication;
 import com.diegopizzo.moviesbooks.config.mvp.AbstractMvpActivity;
 
@@ -22,7 +23,7 @@ public class ItemDetailsActivity extends AbstractMvpActivity<ItemDetailsActivity
 
     @Override
     protected int getLayout() {
-        return 0;
+        return R.layout.item_details_layout;
     }
 
     @Override

@@ -5,4 +5,6 @@
     <string name="publication_date">Publication Date</string>
     <string name="title">Title</string>
     <string name="opening_date">Opening Date</string>
+    <string name="image_of_item">Image of Item</string>
+    <string name="buy_now">Buy now</string>
 </resources>

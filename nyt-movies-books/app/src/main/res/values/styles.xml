@@ -32,4 +32,10 @@
     <style name="MyActionButtonOverflow" parent="android:style/Widget.Holo.ActionButton.Overflow">
         <item name="android:src">@drawable/ic_sort_white_24dp</item>
     </style>
+
+    <style name="MyButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlHighlight">@color/colorPrimaryDarkMyTheme</item>
+        <item name="colorButtonNormal">@color/colorPrimaryMyTheme</item>
+        <item name="android:textColor">@color/cardview_light_background</item>
+    </style>
 </resources>
