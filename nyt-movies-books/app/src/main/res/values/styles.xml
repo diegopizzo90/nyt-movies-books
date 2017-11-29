@@ -21,10 +21,7 @@
         <item name="android:textColorSecondary">@color/cardview_light_background</item>
 
         <!-- To change the popup menu and app text color  -->
-        <item name="android:textColor">@color/cardview_dark_background</item>
-
-        <!-- Default color for the dropdown arrow and line -->
-        <item name="colorControlNormal">@color/cardview_dark_background</item>
+        <item name="android:itemTextAppearance">@style/myCustomMenuTextApearance</item>
 
         <item name="android:actionOverflowButtonStyle">@style/MyActionButtonOverflow</item>
     </style>
@@ -37,5 +34,9 @@
         <item name="colorControlHighlight">@color/colorPrimaryDarkMyTheme</item>
         <item name="colorButtonNormal">@color/colorPrimaryMyTheme</item>
         <item name="android:textColor">@color/cardview_light_background</item>
+    </style>
+    
+    <style name="myCustomMenuTextApearance" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
+        <item name="android:textColor">@color/cardview_dark_background</item>
     </style>
 </resources>
