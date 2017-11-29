@@ -14,16 +14,16 @@ public class Book {
 
     @SerializedName("rank")
     @Expose
-    private int rank;
+    int rank;
     @SerializedName("book_image")
     @Expose
-    private String bookImage;
+    String bookImage;
     @SerializedName("book_image_width")
     @Expose
-    private int bookImageWidth;
+    int bookImageWidth;
     @SerializedName("book_image_heigth")
     @Expose
-    private int bookImageHeight;
+    int bookImageHeight;
 
 
     public int getRank() {

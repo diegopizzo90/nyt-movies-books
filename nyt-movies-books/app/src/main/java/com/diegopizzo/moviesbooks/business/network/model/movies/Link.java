@@ -3,18 +3,21 @@ package com.diegopizzo.moviesbooks.business.network.model.movies;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
+
 /**
  * Created by diegopizzo on 16/11/2017.
  */
 
+@Parcel
 public class Link {
 
     @SerializedName("url")
     @Expose
-    private String url;
+    String url;
     @SerializedName("suggested_link_text")
     @Expose
-    private String suggestedLinkText;
+    String suggestedLinkText;
 
     public String getUrl() {
         return url;
