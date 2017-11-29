@@ -1,6 +1,7 @@
 package com.diegopizzo.moviesbooks.business.interactor;
 
 import com.diegopizzo.moviesbooks.business.network.model.books.BestsellerList;
+import com.diegopizzo.moviesbooks.business.network.model.books.Details;
 import com.diegopizzo.moviesbooks.business.network.service.BooksService;
 
 import io.reactivex.Single;
@@ -19,5 +20,9 @@ public class BooksInteractor {
 
     public Single<BestsellerList> getBestSellerLists(@Nullable final String publishedDate) {
         return booksService.getBestSellerList(publishedDate);
+    }
+
+    public Single<Details> getBookDetails(final Integer isbn, final String listName) {
+        return booksService.getBookDetails(isbn, listName);
     }
 }
