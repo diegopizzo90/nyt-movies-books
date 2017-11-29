@@ -1,4 +1,4 @@
-package com.diegopizzo.moviesbooks.ui;
+package com.diegopizzo.moviesbooks.ui.mainactivity;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -9,8 +9,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 
 import com.diegopizzo.moviesbooks.R;
-import com.diegopizzo.moviesbooks.ui.booksfragment.BooksFragment;
-import com.diegopizzo.moviesbooks.ui.moviesreviewsfragment.MoviesReviewsFragment;
+import com.diegopizzo.moviesbooks.ui.ViewPagerAdapter;
+import com.diegopizzo.moviesbooks.ui.mainactivity.booksfragment.BooksFragment;
+import com.diegopizzo.moviesbooks.ui.mainactivity.moviesreviewsfragment.MoviesReviewsFragment;
 
 public class MainActivity extends AppCompatActivity implements MoviesReviewsFragment.OnFragmentInteractionListener,
         BooksFragment.OnFragmentInteractionListener {

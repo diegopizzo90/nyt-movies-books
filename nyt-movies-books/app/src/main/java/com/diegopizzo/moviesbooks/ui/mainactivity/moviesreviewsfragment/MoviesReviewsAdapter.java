@@ -1,4 +1,4 @@
-package com.diegopizzo.moviesbooks.ui.moviesreviewsfragment;
+package com.diegopizzo.moviesbooks.ui.mainactivity.moviesreviewsfragment;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

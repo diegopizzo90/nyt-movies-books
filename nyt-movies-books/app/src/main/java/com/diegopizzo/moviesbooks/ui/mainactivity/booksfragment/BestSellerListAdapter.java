@@ -1,4 +1,4 @@
-package com.diegopizzo.moviesbooks.ui.booksfragment;
+package com.diegopizzo.moviesbooks.ui.mainactivity.booksfragment;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;

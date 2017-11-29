@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.diegopizzo.moviesbooks.ui.booksfragment.BooksFragment;
-import com.diegopizzo.moviesbooks.ui.moviesreviewsfragment.MoviesReviewsFragment;
+import com.diegopizzo.moviesbooks.ui.mainactivity.booksfragment.BooksFragment;
+import com.diegopizzo.moviesbooks.ui.mainactivity.moviesreviewsfragment.MoviesReviewsFragment;
 
 /**
  * Created by diegopizzo on 19/11/2017.
@@ -14,7 +14,7 @@ import com.diegopizzo.moviesbooks.ui.moviesreviewsfragment.MoviesReviewsFragment
 /**
  * FragmentPagerAdapter: This is best when navigating between sibling screens representing a fixed, small number of pages.
  * FragmentStatePagerAdapter: This is best for paging across a collection of objects for which the number of pages is undetermined.
- *                            It destroys fragments as the user navigates to other pages, minimizing memory usage.
+ * It destroys fragments as the user navigates to other pages, minimizing memory usage.
  */
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 

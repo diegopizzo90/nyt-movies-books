@@ -1,4 +1,4 @@
-package com.diegopizzo.moviesbooks.ui.moviesreviewsfragment;
+package com.diegopizzo.moviesbooks.ui.mainactivity.moviesreviewsfragment;
 
 import android.util.Log;
 

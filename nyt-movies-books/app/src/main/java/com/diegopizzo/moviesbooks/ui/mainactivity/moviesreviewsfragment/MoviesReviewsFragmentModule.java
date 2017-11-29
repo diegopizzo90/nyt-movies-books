@@ -1,4 +1,4 @@
-package com.diegopizzo.moviesbooks.ui.moviesreviewsfragment;
+package com.diegopizzo.moviesbooks.ui.mainactivity.moviesreviewsfragment;
 
 import com.diegopizzo.moviesbooks.business.interactor.MoviesInteractor;
 import com.diegopizzo.moviesbooks.config.dagger.FragmentScope;

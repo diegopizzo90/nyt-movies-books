@@ -1,4 +1,4 @@
-package com.diegopizzo.moviesbooks.ui.booksfragment;
+package com.diegopizzo.moviesbooks.ui.mainactivity.booksfragment;
 
 import com.diegopizzo.moviesbooks.config.dagger.ApplicationComponent;
 import com.diegopizzo.moviesbooks.config.dagger.FragmentScope;

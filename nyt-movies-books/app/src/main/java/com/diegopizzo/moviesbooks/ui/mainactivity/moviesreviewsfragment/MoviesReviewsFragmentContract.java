@@ -1,4 +1,4 @@
-package com.diegopizzo.moviesbooks.ui.moviesreviewsfragment;
+package com.diegopizzo.moviesbooks.ui.mainactivity.moviesreviewsfragment;
 
 import com.diegopizzo.moviesbooks.business.network.model.movies.Movies;
 import com.diegopizzo.moviesbooks.business.network.service.ServiceConstants;
