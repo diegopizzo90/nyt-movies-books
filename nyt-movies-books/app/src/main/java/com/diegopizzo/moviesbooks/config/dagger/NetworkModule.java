@@ -24,7 +24,6 @@ public class NetworkModule {
     @Provides
     @Singleton
     Retrofit provideRetrofit(final GsonConverterFactory gsonConverterFactory) {
-        //TODO endpoint in build.gradle??
         return new Retrofit.Builder()
                 .baseUrl(ServiceConstants.SERVICE_ENDPOINT)
                 .addConverterFactory(gsonConverterFactory)
