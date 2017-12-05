@@ -2,8 +2,8 @@ package com.diegopizzo.moviesbooks.config.dagger;
 
 import com.diegopizzo.moviesbooks.business.interactor.BooksInteractor;
 import com.diegopizzo.moviesbooks.business.interactor.MoviesInteractor;
+import com.diegopizzo.moviesbooks.business.network.cache.BooksStore;
 import com.diegopizzo.moviesbooks.business.network.cache.MoviesStore;
-import com.diegopizzo.moviesbooks.business.network.service.BooksService;
 
 import javax.inject.Singleton;
 
@@ -19,8 +19,8 @@ public class InteractorModule {
 
     @Provides
     @Singleton
-    BooksInteractor providesBooksServiceInteractor(final BooksService booksService) {
-        return new BooksInteractor(booksService);
+    BooksInteractor providesBooksServiceInteractor(final BooksStore booksStore) {
+        return new BooksInteractor(booksStore);
     }
 
     @Provides

@@ -1,8 +1,7 @@
 package com.diegopizzo.moviesbooks.business.interactor;
 
+import com.diegopizzo.moviesbooks.business.network.cache.BooksStore;
 import com.diegopizzo.moviesbooks.business.network.model.books.BestsellerList;
-import com.diegopizzo.moviesbooks.business.network.model.books.Details;
-import com.diegopizzo.moviesbooks.business.network.service.BooksService;
 
 import io.reactivex.Single;
 import io.reactivex.annotations.Nullable;
@@ -12,17 +11,17 @@ import io.reactivex.annotations.Nullable;
  */
 
 public class BooksInteractor {
-    private final BooksService booksService;
+    private final BooksStore booksStore;
 
-    public BooksInteractor(final BooksService booksService) {
-        this.booksService = booksService;
+    public BooksInteractor(final BooksStore booksStore) {
+        this.booksStore = booksStore;
     }
 
     public Single<BestsellerList> getBestSellerLists(@Nullable final String publishedDate) {
-        return booksService.getBestSellerList(publishedDate);
+        return booksStore.storeData("KEY");
     }
 
-    public Single<Details> getBookDetails(final Integer isbn, final String listName) {
+    /*public Single<Details> getBookDetails(final Integer isbn, final String listName) {
         return booksService.getBookDetails(isbn, listName);
-    }
+    }*/
 }

@@ -3,13 +3,10 @@ package com.diegopizzo.moviesbooks.business.network.model.books;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import org.parceler.Parcel;
-
 /**
  * Created by diegopizzo on 24/11/2017.
  */
 
-@Parcel
 public class Book {
 
     @SerializedName("rank")

@@ -1,6 +1,8 @@
 package com.diegopizzo.moviesbooks.config.dagger;
 
+import com.diegopizzo.moviesbooks.business.network.cache.BooksStore;
 import com.diegopizzo.moviesbooks.business.network.cache.MoviesStore;
+import com.diegopizzo.moviesbooks.business.network.service.BooksService;
 import com.diegopizzo.moviesbooks.business.network.service.MoviesService;
 
 import javax.inject.Singleton;
@@ -19,5 +21,11 @@ public class StoreModule {
     @Singleton
     MoviesStore providesMoviesStore(final MoviesService moviesService) {
         return new MoviesStore(moviesService);
+    }
+
+    @Provides
+    @Singleton
+    BooksStore providesBooksStore(final BooksService booksService) {
+        return new BooksStore(booksService);
     }
 }

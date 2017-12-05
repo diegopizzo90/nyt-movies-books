@@ -2,7 +2,6 @@ package com.diegopizzo.moviesbooks.ui.mainactivity.booksfragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,15 +11,10 @@ import android.widget.ProgressBar;
 
 import com.diegopizzo.moviesbooks.R;
 import com.diegopizzo.moviesbooks.business.network.model.books.BestsellerList;
-import com.diegopizzo.moviesbooks.business.network.model.books.ListResults;
 import com.diegopizzo.moviesbooks.config.MoviesBooksApplication;
 import com.diegopizzo.moviesbooks.config.mvp.AbstractMvpFragment;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
-
-import org.parceler.Parcels;
-
-import java.util.List;
 
 import butterknife.BindView;
 
@@ -71,17 +65,12 @@ public class BooksFragment extends AbstractMvpFragment<BooksFragmentContract.Pre
     public void onActivityCreated(@Nullable final Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (savedInstanceState != null) {
-            final Parcelable listParcelable = savedInstanceState.getParcelable(BUNDLE_BEST_SELLERS);
-            final List<ListResults> bestsellerList = Parcels.unwrap(listParcelable);
-            bestSellerListAdapter.swapItems(bestsellerList);
         }
     }
 
     @Override
     public void onSaveInstanceState(final Bundle outState) {
         super.onSaveInstanceState(outState);
-        final Parcelable listParcelable = Parcels.wrap(bestSellerListAdapter.getBestSellerList());
-        outState.putParcelable(BUNDLE_BEST_SELLERS, listParcelable);
     }
 
     private void setBestSellerRecyclerView() {
