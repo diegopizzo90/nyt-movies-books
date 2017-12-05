@@ -77,4 +77,11 @@ public class MoviesReviewsFragmentPresenter implements MoviesReviewsFragmentCont
                 });
 
     }
+
+    @Override
+    public void resumeData(final int offset, final ServiceConstants.OrderMovies orderMovies) {
+        for (int i = 0; i <= offset; i = i + 20) {
+            moviesReviews(i, false, orderMovies);
+        }
+    }
 }

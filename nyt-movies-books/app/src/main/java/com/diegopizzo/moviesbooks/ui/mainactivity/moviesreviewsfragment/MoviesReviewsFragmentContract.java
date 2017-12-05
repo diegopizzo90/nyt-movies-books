@@ -27,5 +27,7 @@ public class MoviesReviewsFragmentContract {
 
     interface Presenter extends MvpPresenter {
         void moviesReviews(Integer offset, boolean refresh, ServiceConstants.OrderMovies orderBy);
+
+        void resumeData(int offset, ServiceConstants.OrderMovies orderMovies);
     }
 }

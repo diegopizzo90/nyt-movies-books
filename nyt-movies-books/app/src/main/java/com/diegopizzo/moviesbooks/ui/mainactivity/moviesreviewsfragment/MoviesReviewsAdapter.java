@@ -1,17 +1,21 @@
 package com.diegopizzo.moviesbooks.ui.mainactivity.moviesreviewsfragment;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.diegopizzo.moviesbooks.R;
 import com.diegopizzo.moviesbooks.business.network.model.movies.Multimedia;
 import com.diegopizzo.moviesbooks.business.network.model.movies.Result;
+import com.diegopizzo.moviesbooks.ui.itemdetailsactivity.ItemDetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +26,7 @@ import java.util.List;
 
 public class MoviesReviewsAdapter extends RecyclerView.Adapter<MoviesReviewsAdapter.ViewHolder> {
 
+    public static final String MOVIE_TITLE_BUNDLE = "movieTitle";
     // Store the context for easy access
     private final Context mContext;
     // Store a member variable for the items
@@ -82,14 +87,10 @@ public class MoviesReviewsAdapter extends RecyclerView.Adapter<MoviesReviewsAdap
         resultList.addAll(results);
         notifyDataSetChanged();
     }
-
-    public List<Result> getResultList() {
-        return resultList;
-    }
-
+    
     // Provide a direct reference to each of the views within a data item
     // Used to cache the views within the item layout for fast access
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
@@ -106,6 +107,27 @@ public class MoviesReviewsAdapter extends RecyclerView.Adapter<MoviesReviewsAdap
             byline = (TextView) itemView.findViewById(R.id.movieBylineTextView);
             healine = (TextView) itemView.findViewById(R.id.movieHeadlineTextView);
             movieImage = (ImageView) itemView.findViewById(R.id.movieImageView);
+
+            // Attach a click listener to the entire row view
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(final View v) {
+            final int position = getItemCount(); // gets item position
+            if (position != RecyclerView.NO_POSITION) { // Check if an item was deleted, but the user clicked it before the UI removed it
+                // We can access the data within the views
+                if (title.getText() != null) {
+                    final Context context = v.getContext();
+                    final Intent intent = new Intent(context, ItemDetailsActivity.class);
+                    final Bundle titleBundle = new Bundle();
+                    titleBundle.putString(MOVIE_TITLE_BUNDLE, title.getText().toString());
+                    intent.putExtras(titleBundle);
+                    context.startActivity(intent);
+                } else {
+                    Toast.makeText(v.getContext(), "Movie not exist", Toast.LENGTH_SHORT).show();
+                }
+            }
         }
     }
 }

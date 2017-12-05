@@ -3,13 +3,10 @@ package com.diegopizzo.moviesbooks.business.network.model.movies;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import org.parceler.Parcel;
-
 /**
  * Created by diegopizzo on 28/11/2017.
  */
 
-@Parcel
 public class ResultDetails extends Result {
 
     @SerializedName("summary_short")
