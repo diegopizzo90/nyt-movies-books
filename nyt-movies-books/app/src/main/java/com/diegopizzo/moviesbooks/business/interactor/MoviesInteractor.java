@@ -5,7 +5,6 @@ import com.diegopizzo.moviesbooks.business.network.model.movies.Movies;
 import com.diegopizzo.moviesbooks.business.network.service.MoviesService;
 import com.diegopizzo.moviesbooks.business.network.service.ServiceConstants;
 
-import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.annotations.Nullable;
@@ -22,9 +21,9 @@ public class MoviesInteractor {
         this.moviesService = moviesService;
     }
 
-    public Observable<Movies> getMoviesReviews(@NonNull final ServiceConstants.ResourceTypeMovies resourceTypeMovies,
-                                               @Nullable final Integer offset,
-                                               @NonNull final ServiceConstants.OrderMovies orderMovies) {
+    public Single<Movies> getMoviesReviews(@NonNull final ServiceConstants.ResourceTypeMovies resourceTypeMovies,
+                                           @Nullable final Integer offset,
+                                           @NonNull final ServiceConstants.OrderMovies orderMovies) {
 
         return moviesService.getMoviesReviews(resourceTypeMovies.getValue(), offset, orderMovies.getValue());
     }

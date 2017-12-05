@@ -3,7 +3,6 @@ package com.diegopizzo.moviesbooks.business.network.service;
 import com.diegopizzo.moviesbooks.business.network.model.movies.MovieDetails;
 import com.diegopizzo.moviesbooks.business.network.model.movies.Movies;
 
-import io.reactivex.Observable;
 import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
@@ -29,7 +28,7 @@ public interface MoviesService {
      */
     @Headers({"Content-Type: application/json", "apikey: " + API_KEY})
     @GET("/svc/movies/v2/reviews/{resource-type}.json")
-    Observable<Movies> getMoviesReviews(@Path("resource-type") String resourceType, @Query("offset") Integer offset, @Query("order") String order);
+    Single<Movies> getMoviesReviews(@Path("resource-type") String resourceType, @Query("offset") Integer offset, @Query("order") String order);
 
 
     /**

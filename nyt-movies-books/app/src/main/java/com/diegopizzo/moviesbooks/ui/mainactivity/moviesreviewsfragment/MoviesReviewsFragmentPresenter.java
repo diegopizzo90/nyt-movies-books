@@ -6,7 +6,7 @@ import com.diegopizzo.moviesbooks.business.interactor.MoviesInteractor;
 import com.diegopizzo.moviesbooks.business.network.model.movies.Movies;
 import com.diegopizzo.moviesbooks.business.network.service.ServiceConstants;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
@@ -30,19 +30,16 @@ public class MoviesReviewsFragmentPresenter implements MoviesReviewsFragmentCont
     @Override
     public void moviesReviews(final Integer offset, final boolean refresh, final ServiceConstants.OrderMovies orderBy) {
 
-        final Observable<Movies> moviesObservable = moviesInteractor.getMoviesReviews(ServiceConstants.ResourceTypeMovies.ALL,
+        final Single<Movies> moviesObservable = moviesInteractor.getMoviesReviews(ServiceConstants.ResourceTypeMovies.ALL,
                 offset, orderBy);
 
         final Disposable disposable = moviesObservable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe(new Consumer<Disposable>() {
-                    @Override
-                    public void accept(final Disposable disposable) throws Exception {
-                        if (offset == 0 && !refresh) {
-                            view.showLoadingMovies();
-                        }
-                        view.showSwipyRefreshLayout();
+                .doOnSubscribe(disposable1 -> {
+                    if (offset == 0 && !refresh) {
+                        view.showLoadingMovies();
                     }
+                    view.showSwipyRefreshLayout();
                 })
                 .doFinally(new Action() {
                     @Override
@@ -51,29 +48,23 @@ public class MoviesReviewsFragmentPresenter implements MoviesReviewsFragmentCont
                         view.showContentMovies();
                     }
                 })
-                .subscribe(new Consumer<Movies>() {
-                    @Override
-                    public void accept(final Movies movies) throws Exception {
-                        if (movies != null) {
-                            if (refresh) {
-                                view.refreshDataOnRecyclerView(movies);
-                            } else {
-                                view.setDataOnRecyclerView(movies);
-                            }
-                            Log.i("Movies", "Ok - Offset: " + offset + " Refresh: " + refresh);
+                .subscribe(movies -> {
+                    if (movies != null) {
+                        if (refresh) {
+                            view.refreshDataOnRecyclerView(movies);
                         } else {
-                            Log.i("Movies", "It's empty!");
-
+                            view.setDataOnRecyclerView(movies);
                         }
+                        Log.i("Movies", "Ok - Offset: " + offset + " Refresh: " + refresh);
+                    } else {
+                        Log.i("Movies", "It's empty!");
+
                     }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(final Throwable throwable) throws Exception {
-                        view.showMessage("Errore " + throwable.getMessage());
-                        view.hideSwipyRefreshLayout();
-                        view.showContentMovies();
-                        Log.e("error", throwable.getMessage());
-                    }
+                }, throwable -> {
+                    view.showMessage("Errore " + throwable.getMessage());
+                    view.hideSwipyRefreshLayout();
+                    view.showContentMovies();
+                    Log.e("error", throwable.getMessage());
                 });
 
     }
