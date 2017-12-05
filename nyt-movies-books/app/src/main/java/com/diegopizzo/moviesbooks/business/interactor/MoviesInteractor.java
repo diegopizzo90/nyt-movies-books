@@ -1,8 +1,7 @@
 package com.diegopizzo.moviesbooks.business.interactor;
 
-import com.diegopizzo.moviesbooks.business.network.model.movies.MovieDetails;
+import com.diegopizzo.moviesbooks.business.network.cache.MoviesStore;
 import com.diegopizzo.moviesbooks.business.network.model.movies.Movies;
-import com.diegopizzo.moviesbooks.business.network.service.MoviesService;
 import com.diegopizzo.moviesbooks.business.network.service.ServiceConstants;
 
 import io.reactivex.Single;
@@ -15,21 +14,20 @@ import io.reactivex.annotations.Nullable;
 
 public class MoviesInteractor {
 
-    private final MoviesService moviesService;
+    private final MoviesStore moviesStore;
 
-    public MoviesInteractor(final MoviesService moviesService) {
-        this.moviesService = moviesService;
+    public MoviesInteractor(final MoviesStore moviesStore) {
+        this.moviesStore = moviesStore;
     }
 
-    public Single<Movies> getMoviesReviews(@NonNull final ServiceConstants.ResourceTypeMovies resourceTypeMovies,
-                                           @Nullable final Integer offset,
+    public Single<Movies> getMoviesReviews(@Nullable final Integer offset,
                                            @NonNull final ServiceConstants.OrderMovies orderMovies) {
 
-        return moviesService.getMoviesReviews(resourceTypeMovies.getValue(), offset, orderMovies.getValue());
+        return moviesStore.storeData(offset.toString() + ";" + orderMovies.getValue());
     }
 
 
-    public Single<MovieDetails> getMovieReview(final String query) {
+    /*public Single<MovieDetails> getMovieReview(final String query) {
         return moviesService.getMovieReview(query);
-    }
+    }*/
 }

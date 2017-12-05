@@ -15,13 +15,13 @@ import dagger.Component;
  */
 
 @Singleton
-@Component(modules = {ApplicationModule.class, InteractorModule.class, NetworkModule.class})
+@Component(modules = {ApplicationModule.class, InteractorModule.class, NetworkModule.class, StoreModule.class})
 public interface ApplicationComponent {
 
     MoviesInteractor providesMoviesServiceInteractor();
 
     BooksInteractor providesBooksServiceInteractor();
-    
+
     class Injector {
         public static ApplicationComponent getComponent(final Context c) {
             return ((MoviesBooksApplication) c.getApplicationContext()).getApplicationComponent();

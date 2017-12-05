@@ -27,6 +27,7 @@ dependencies {
 
     ext.supportLibraryVersion = "26.1.0"
     ext.retrofitVersion = "2.3.0"
+    ext.nyTimesCacheVersion = "3.0.0-beta"
 
     //google libraries
     implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
@@ -71,6 +72,10 @@ dependencies {
 
     //https://github.com/DreaminginCodeZH/MaterialRatingBar
     implementation 'me.zhanghai.android.materialratingbar:library:1.2.0'
+
+    //https://github.com/NYTimes/Store
+    implementation "com.nytimes.android:cache3:$nyTimesCacheVersion"
+    implementation "com.nytimes.android:store3:$nyTimesCacheVersion"
 
     //TEST
     testImplementation 'junit:junit:4.12'

@@ -10,7 +10,6 @@ import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -30,8 +29,7 @@ public class MoviesReviewsFragmentPresenter implements MoviesReviewsFragmentCont
     @Override
     public void moviesReviews(final Integer offset, final boolean refresh, final ServiceConstants.OrderMovies orderBy) {
 
-        final Single<Movies> moviesObservable = moviesInteractor.getMoviesReviews(ServiceConstants.ResourceTypeMovies.ALL,
-                offset, orderBy);
+        final Single<Movies> moviesObservable = moviesInteractor.getMoviesReviews(offset, orderBy);
 
         final Disposable disposable = moviesObservable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
