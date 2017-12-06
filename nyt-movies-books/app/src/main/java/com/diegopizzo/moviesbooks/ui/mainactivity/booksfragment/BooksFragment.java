@@ -2,6 +2,7 @@ package com.diegopizzo.moviesbooks.ui.mainactivity.booksfragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,7 +28,7 @@ public class BooksFragment extends AbstractMvpFragment<BooksFragmentContract.Pre
     public static final String TAG = "BooksFragment";
     public static final String TITLE = "BestSellers";
     public static final int VIEW_PAGER_POSITION = 1;
-    private static final String BUNDLE_BEST_SELLERS = "BundleBestSellers";
+    private static final String LAYOUT_POSITION_KEY = "layoutPositionKey";
     @BindView(R.id.bestSellerRecyclerView)
     RecyclerView bestSellerRecyclerView;
     @BindView(R.id.progressBarBestSeller)
@@ -36,6 +37,8 @@ public class BooksFragment extends AbstractMvpFragment<BooksFragmentContract.Pre
     SwipyRefreshLayout swipyRefreshLayout;
     private BestSellerListAdapter bestSellerListAdapter;
     private OnFragmentInteractionListener onFragmentInteractionListener;
+    private GridLayoutManager gridLayoutManager;
+    private int layoutPosition;
 
     public static BooksFragment newInstance(final Bundle bundle) {
         final BooksFragment booksFragment = new BooksFragment();
@@ -54,9 +57,7 @@ public class BooksFragment extends AbstractMvpFragment<BooksFragmentContract.Pre
     @Override
     public void onViewCreated(final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if (savedInstanceState == null) {
-            presenter.bestSellers(false);
-        }
+        presenter.bestSellers(false);
         setSwypeRefreshLayout();
         setBestSellerRecyclerView();
     }
@@ -65,17 +66,20 @@ public class BooksFragment extends AbstractMvpFragment<BooksFragmentContract.Pre
     public void onActivityCreated(@Nullable final Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (savedInstanceState != null) {
+            layoutPosition = savedInstanceState.getInt(LAYOUT_POSITION_KEY);
+            bestSellerRecyclerView.post(() -> bestSellerRecyclerView.scrollToPosition(layoutPosition));
         }
     }
 
     @Override
-    public void onSaveInstanceState(final Bundle outState) {
+    public void onSaveInstanceState(@NonNull final Bundle outState) {
         super.onSaveInstanceState(outState);
+        outState.putInt(LAYOUT_POSITION_KEY, gridLayoutManager.findFirstVisibleItemPosition());
     }
 
     private void setBestSellerRecyclerView() {
         // First param is number of columns and second param is orientation i.e Vertical or Horizontal
-        final GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1);
+        gridLayoutManager = new GridLayoutManager(getContext(), 1);
         // Attach the layout manager to the recycler view
         bestSellerRecyclerView.setLayoutManager(gridLayoutManager);
         bestSellerRecyclerView.setAdapter(bestSellerListAdapter);
