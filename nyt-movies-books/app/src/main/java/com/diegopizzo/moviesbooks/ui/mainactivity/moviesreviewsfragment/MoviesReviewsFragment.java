@@ -107,7 +107,7 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
     private int getPositionLayout(final int[] positions) {
         for (int i = SPAN_COUNT - 1; i >= 0; i--) {
             if (positions[i] != -1) {
-                return positions[i] + 1;
+                return positions[i];
             }
         }
         return 1;
