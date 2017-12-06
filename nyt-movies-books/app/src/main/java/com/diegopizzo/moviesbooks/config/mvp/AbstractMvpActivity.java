@@ -8,8 +8,11 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.diegopizzo.moviesbooks.R;
+
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public abstract class AbstractMvpActivity<P extends MvpPresenter> extends AppCompatActivity implements MvpView {
@@ -17,7 +20,7 @@ public abstract class AbstractMvpActivity<P extends MvpPresenter> extends AppCom
     @Inject
     protected P presenter;
     @Nullable
-    //@BindView(R.id.progressBar)
+    @BindView(R.id.itemSelectedProgressBar)
     protected ProgressBar progressBar;
 
     @Override

@@ -1,5 +1,6 @@
 package com.diegopizzo.moviesbooks.business.network.cache;
 
+import com.diegopizzo.moviesbooks.business.network.model.movies.MovieDetails;
 import com.diegopizzo.moviesbooks.business.network.model.movies.Movies;
 import com.diegopizzo.moviesbooks.business.network.service.MoviesService;
 import com.diegopizzo.moviesbooks.business.network.service.ServiceConstants;
@@ -15,6 +16,7 @@ import io.reactivex.Single;
 public class MoviesStore {
 
     private final Store<Movies, String> store;
+    private final Store<MovieDetails, String> storeDetails;
     private final MoviesService moviesService;
 
     public MoviesStore(final MoviesService moviesService) {
@@ -26,9 +28,18 @@ public class MoviesStore {
                                 Integer.parseInt(key.split(";")[0]),
                                 key.split(";")[1]))
                 .open();
+
+        storeDetails = StoreBuilder.<String, MovieDetails>key()
+                .fetcher(key ->
+                        moviesService.getMovieReview(key))
+                .open();
     }
 
     public Single<Movies> storeData(final String key) {
         return store.get(key);
+    }
+
+    public Single<MovieDetails> storeDataDetail(final String key) {
+        return storeDetails.get(key);
     }
 }

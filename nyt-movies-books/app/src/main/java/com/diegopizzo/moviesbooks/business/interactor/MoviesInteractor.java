@@ -1,6 +1,7 @@
 package com.diegopizzo.moviesbooks.business.interactor;
 
 import com.diegopizzo.moviesbooks.business.network.cache.MoviesStore;
+import com.diegopizzo.moviesbooks.business.network.model.movies.MovieDetails;
 import com.diegopizzo.moviesbooks.business.network.model.movies.Movies;
 import com.diegopizzo.moviesbooks.business.network.service.ServiceConstants;
 
@@ -27,7 +28,7 @@ public class MoviesInteractor {
     }
 
 
-    /*public Single<MovieDetails> getMovieReview(final String query) {
-        return moviesService.getMovieReview(query);
-    }*/
+    public Single<MovieDetails> getMovieReview(final String query) {
+        return moviesStore.storeDataDetail(query);
+    }
 }
