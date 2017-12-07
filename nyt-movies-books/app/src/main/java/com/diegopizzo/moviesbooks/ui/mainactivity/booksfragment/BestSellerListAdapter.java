@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.diegopizzo.moviesbooks.R;
+import com.diegopizzo.moviesbooks.business.network.model.books.Book;
 import com.diegopizzo.moviesbooks.business.network.model.books.ListResults;
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper;
 
@@ -49,6 +50,7 @@ public class BestSellerListAdapter extends RecyclerView.Adapter<BestSellerListAd
         // Set item views based on your views and data model
         holder.bestSellerTitle.setText(bestSeller.getDisplayName());
         holder.bookListAdapter.swapItems(bestSeller.getBooks());
+        setBestSellerTitleIntoBookList(bestSeller.getBooks(), bestSeller.getDisplayNameEncoded());
     }
 
     @Override
@@ -63,10 +65,14 @@ public class BestSellerListAdapter extends RecyclerView.Adapter<BestSellerListAd
         }
     }
 
-    public List<ListResults> getBestSellerList() {
-        return bestSellerList;
+    private void setBestSellerTitleIntoBookList(final List<Book> bookList, final String title) {
+        if (bookList != null) {
+            for (final Book book : bookList) {
+                book.setBestSellerTitle(title);
+            }
+        }
     }
-
+    
     // Provide a direct reference to each of the views within a data item
     // Used to cache the views within the item layout for fast access
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -85,6 +91,7 @@ public class BestSellerListAdapter extends RecyclerView.Adapter<BestSellerListAd
             snapHelperStart.attachToRecyclerView(bookRecyclerView);
             bookListAdapter = new BookListAdapter(context);
             bookRecyclerView.setAdapter(bookListAdapter);
+            bookRecyclerView.setId(getLayoutPosition());
         }
     }
 }

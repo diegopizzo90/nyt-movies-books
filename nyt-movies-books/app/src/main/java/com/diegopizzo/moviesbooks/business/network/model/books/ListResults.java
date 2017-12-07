@@ -11,27 +11,23 @@ import java.util.List;
 
 public class ListResults {
 
-    @SerializedName("list_name")
-    @Expose
-    String listName;
     @SerializedName("display_name")
     @Expose
-    String displayName;
+    private String displayName;
+    @SerializedName("list_name_encoded")
+    @Expose
+    private String displayNameEncoded;
     @SerializedName("books")
     @Expose
-    List<Book> books;
+    private List<Book> books;
 
-    public String getListName() {
-        return listName;
+
+    public String getDisplayNameEncoded() {
+        return displayNameEncoded;
     }
 
-    public void setListName(final String listName) {
-        this.listName = listName;
-    }
-
-    public ListResults withListName(final String listName) {
-        this.listName = listName;
-        return this;
+    public void setDisplayNameEncoded(String displayNameEncoded) {
+        this.displayNameEncoded = displayNameEncoded;
     }
 
     public String getDisplayName() {

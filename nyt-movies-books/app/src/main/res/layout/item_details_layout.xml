@@ -9,15 +9,18 @@
         android:layout_height="match_parent">
 
         <android.support.v7.widget.CardView
+            android:id="@+id/card_image"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             app:cardCornerRadius="@dimen/corner_radius"
             app:cardElevation="@dimen/elevation"
             app:cardUseCompatPadding="true"
-            app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal"
+            app:layout_constraintBottom_toTopOf="@id/card_description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintVertical_chainStyle="packed">
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
@@ -28,17 +31,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.6" />
+                    app:layout_constraintGuide_percent="0.58" />
 
                 <ImageView
                     android:id="@+id/itemImageView"
-                    android:layout_width="@dimen/imageview_movie_width"
-                    android:layout_height="@dimen/imageview_movie_height"
-                    android:layout_marginBottom="@dimen/margin_layout"
+                    android:layout_width="@dimen/imageview_book_width"
+                    android:layout_height="@dimen/imageview_book_height"
                     android:layout_marginEnd="@dimen/margin_layout"
-                    android:layout_marginStart="@dimen/margin_layout"
-                    android:layout_marginTop="@dimen/margin_layout"
+                    android:adjustViewBounds="true"
                     android:contentDescription="@string/image_of_item"
+                    android:scaleType="fitCenter"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/guidelineVertical"
                     app:layout_constraintStart_toStartOf="parent"
@@ -49,25 +51,27 @@
                     android:id="@+id/itemTitleTextView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_layout"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginEnd="@dimen/margin_layout"
                     android:layout_marginStart="@dimen/margin_layout"
-                    android:layout_marginTop="@dimen/margin_layout"
+                    android:layout_marginTop="8dp"
+                    android:textAlignment="center"
                     android:textAppearance="@android:style/TextAppearance.Material.Title"
                     android:textColor="@android:color/background_dark"
                     app:layout_constraintBottom_toTopOf="@+id/itemAuthorTextView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/guidelineVertical"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
                     app:layout_constraintVertical_chainStyle="packed" />
 
                 <TextView
                     android:id="@+id/itemAuthorTextView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_layout"
                     android:layout_marginEnd="@dimen/margin_layout"
                     android:layout_marginStart="@dimen/margin_layout"
+                    android:textAlignment="center"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -79,15 +83,16 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
+            android:id="@+id/card_description"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             app:cardCornerRadius="@dimen/corner_radius"
             app:cardElevation="@dimen/elevation"
             app:cardUseCompatPadding="true"
-            app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontalButton"
+            app:layout_constraintBottom_toTopOf="@id/card_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal">
+            app:layout_constraintTop_toBottomOf="@id/card_image">
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
@@ -130,15 +135,16 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
+            android:id="@+id/card_button"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             app:cardCornerRadius="@dimen/corner_radius"
             app:cardElevation="@dimen/elevation"
             app:cardUseCompatPadding="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/guidelineHorizontalButton">
+            app:layout_constraintTop_toBottomOf="@id/card_description">
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
@@ -161,20 +167,6 @@
             </android.support.constraint.ConstraintLayout>
 
         </android.support.v7.widget.CardView>
-
-        <android.support.constraint.Guideline
-            android:id="@+id/guidelineHorizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.38" />
-
-        <android.support.constraint.Guideline
-            android:id="@+id/guidelineHorizontalButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.77" />
 
     </android.support.constraint.ConstraintLayout>
 

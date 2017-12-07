@@ -2,6 +2,7 @@ package com.diegopizzo.moviesbooks.business.interactor;
 
 import com.diegopizzo.moviesbooks.business.network.cache.BooksStore;
 import com.diegopizzo.moviesbooks.business.network.model.books.BestsellerList;
+import com.diegopizzo.moviesbooks.business.network.model.books.Details;
 
 import io.reactivex.Single;
 import io.reactivex.annotations.Nullable;
@@ -21,7 +22,7 @@ public class BooksInteractor {
         return booksStore.storeData("KEY");
     }
 
-    /*public Single<Details> getBookDetails(final Integer isbn, final String listName) {
-        return booksService.getBookDetails(isbn, listName);
-    }*/
+    public Single<Details> getBookDetails(final String isbn, final String listName) {
+        return booksStore.storeDataDetail(isbn + ";" + listName);
+    }
 }

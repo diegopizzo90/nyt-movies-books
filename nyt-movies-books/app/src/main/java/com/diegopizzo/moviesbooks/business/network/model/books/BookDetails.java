@@ -27,12 +27,6 @@ public class BookDetails {
     @SerializedName("publisher")
     @Expose
     String publisher;
-    @SerializedName("primary_isbn13")
-    @Expose
-    String primaryIsbn13;
-    @SerializedName("primary_isbn10")
-    @Expose
-    String primaryIsbn10;
 
     public String getTitle() {
         return title;
@@ -111,31 +105,4 @@ public class BookDetails {
         this.publisher = publisher;
         return this;
     }
-
-    public String getPrimaryIsbn13() {
-        return primaryIsbn13;
-    }
-
-    public void setPrimaryIsbn13(final String primaryIsbn13) {
-        this.primaryIsbn13 = primaryIsbn13;
-    }
-
-    public BookDetails withPrimaryIsbn13(final String primaryIsbn13) {
-        this.primaryIsbn13 = primaryIsbn13;
-        return this;
-    }
-
-    public String getPrimaryIsbn10() {
-        return primaryIsbn10;
-    }
-
-    public void setPrimaryIsbn10(final String primaryIsbn10) {
-        this.primaryIsbn10 = primaryIsbn10;
-    }
-
-    public BookDetails withPrimaryIsbn10(final String primaryIsbn10) {
-        this.primaryIsbn10 = primaryIsbn10;
-        return this;
-    }
-
 }

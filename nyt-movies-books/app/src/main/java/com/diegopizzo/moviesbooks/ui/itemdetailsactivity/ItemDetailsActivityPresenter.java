@@ -4,6 +4,8 @@ import android.util.Log;
 
 import com.diegopizzo.moviesbooks.business.interactor.BooksInteractor;
 import com.diegopizzo.moviesbooks.business.interactor.MoviesInteractor;
+import com.diegopizzo.moviesbooks.business.network.model.books.Details;
+import com.diegopizzo.moviesbooks.business.network.model.books.ResultsDetails;
 import com.diegopizzo.moviesbooks.business.network.model.movies.MovieDetails;
 import com.diegopizzo.moviesbooks.business.network.model.movies.ResultDetails;
 
@@ -39,6 +41,34 @@ public class ItemDetailsActivityPresenter implements ItemDetailsActivityContract
                     if (movieDetails != null && movieDetails.getResults() != null) {
                         final ResultDetails resultDetails = movieDetails.getResults().get(0);
                         view.setDataOfMovieReview(resultDetails);
+                    } else {
+                        view.showMessage("Movie not available");
+                    }
+                }, throwable -> {
+                    view.showContent();
+                    view.showMessage("Errore " + throwable.getMessage());
+                    Log.e("error", throwable.getMessage());
+                });
+    }
+
+
+    @Override
+    public void getSelectedBookDetails(final String isbn, final String listName, final String imageBook) {
+        final Single<Details> bookDetailsSingle = booksInteractor.getBookDetails(isbn, listName);
+        bookDetailsSingle.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(disposable -> view.showLoading())
+                .doFinally(view::showContent)
+                .subscribe(bookDetails -> {
+                    if (bookDetails != null && bookDetails.getResults() != null
+                            && !bookDetails.getResults().isEmpty()
+                            && bookDetails.getResults().get(0).getBookDetails() != null) {
+
+                        final ResultsDetails resultDetails = bookDetails.getResults().get(0);
+                        final String amazonLink = resultDetails.getAmazonProductUrl();
+                        view.setDataOfBook(resultDetails.getBookDetails().get(0), amazonLink, imageBook);
+                    } else {
+                        view.showMessage("Book not available");
                     }
                 }, throwable -> {
                     view.showContent();

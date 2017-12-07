@@ -6,4 +6,6 @@
     <dimen name="corner_radius">6dp</dimen>
     <dimen name="imageview_movie_width">210dp</dimen>
     <dimen name="imageview_movie_height">140dp</dimen>
+    <dimen name="imageview_book_width">216dp</dimen>
+    <dimen name="imageview_book_height">330dp</dimen>
 </resources>

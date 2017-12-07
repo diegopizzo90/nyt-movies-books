@@ -6,15 +6,18 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.diegopizzo.moviesbooks.R;
+import com.diegopizzo.moviesbooks.business.network.model.books.BookDetails;
 import com.diegopizzo.moviesbooks.business.network.model.movies.ResultDetails;
 import com.diegopizzo.moviesbooks.config.MoviesBooksApplication;
 import com.diegopizzo.moviesbooks.config.mvp.AbstractMvpActivity;
+import com.diegopizzo.moviesbooks.ui.mainactivity.booksfragment.BookListAdapter;
 import com.diegopizzo.moviesbooks.ui.mainactivity.moviesreviewsfragment.MoviesReviewsAdapter;
 
 import butterknife.BindView;
@@ -61,6 +64,10 @@ public class ItemDetailsActivity extends AbstractMvpActivity<ItemDetailsActivity
         itemTitleDescriptionTextView.setText(resultDetails.getHeadline());
         button.setText(R.string.read_more);
         if (resultDetails.getMultimedia() != null) {
+            final ViewGroup.LayoutParams layoutParams = itemImageView.getLayoutParams();
+            layoutParams.width = (int) getResources().getDimension(R.dimen.imageview_movie_width);
+            layoutParams.height = (int) getResources().getDimension(R.dimen.imageview_movie_height);
+            itemImageView.setLayoutParams(layoutParams);
             Glide.with(this).load(resultDetails.getMultimedia().getSrc()).into(itemImageView);
         }
         button.setOnClickListener(v -> {
@@ -73,6 +80,27 @@ public class ItemDetailsActivity extends AbstractMvpActivity<ItemDetailsActivity
         });
     }
 
+    @Override
+    public void setDataOfBook(final BookDetails book, final String amazonLink, final String imageBook) {
+        itemTitleTextView.setText(book.getTitle());
+        itemAuthorTextView.setText(book.getAuthor());
+        itemDescriptionTextView.setText(book.getDescription());
+        itemTitleDescriptionTextView.setVisibility(View.GONE);
+        button.setText(R.string.buy_now);
+        final ViewGroup.LayoutParams layoutParams = itemImageView.getLayoutParams();
+        layoutParams.width = (int) getResources().getDimension(R.dimen.imageview_book_width);
+        layoutParams.height = (int) getResources().getDimension(R.dimen.imageview_book_height);
+        itemImageView.setLayoutParams(layoutParams);
+        Glide.with(this).load(imageBook).into(itemImageView);
+        button.setOnClickListener(v -> {
+            if (!TextUtils.isEmpty(amazonLink)) {
+                final Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(amazonLink));
+                startActivity(i);
+            }
+        });
+    }
+
     private void passDataFromSelectedItemToPresenter() {
         final Intent intent = getIntent();
         if (intent != null) {
@@ -80,7 +108,10 @@ public class ItemDetailsActivity extends AbstractMvpActivity<ItemDetailsActivity
             if (!TextUtils.isEmpty(titleMovies)) {
                 presenter.getSelectedMovieDetails(titleMovies);
             } else {
-
+                final String isbn = intent.getStringExtra(BookListAdapter.BOOK_ISBN_BUNDLE);
+                final String listName = intent.getStringExtra(BookListAdapter.BOOK_LIST_NAME_BUNDLE);
+                final String imageBook = intent.getStringExtra(BookListAdapter.BOOK_IMAGE_BUNDLE);
+                presenter.getSelectedBookDetails(isbn, listName, imageBook);
             }
         }
     }

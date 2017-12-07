@@ -37,5 +37,5 @@ public interface BooksService {
      */
     @Headers({"Content-Type: application/json", "apikey: " + API_KEY})
     @GET("/svc/books/v3/lists//.json")
-    Single<Details> getBookDetails(@Query("isbn") Integer isbn, @Query("list-name") String listName);
+    Single<Details> getBookDetails(@Query("isbn") String isbn, @Query("list-name") String listName);
 }

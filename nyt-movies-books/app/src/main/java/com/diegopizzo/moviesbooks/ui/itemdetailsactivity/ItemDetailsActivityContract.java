@@ -1,5 +1,6 @@
 package com.diegopizzo.moviesbooks.ui.itemdetailsactivity;
 
+import com.diegopizzo.moviesbooks.business.network.model.books.BookDetails;
 import com.diegopizzo.moviesbooks.business.network.model.movies.ResultDetails;
 import com.diegopizzo.moviesbooks.config.mvp.MvpPresenter;
 import com.diegopizzo.moviesbooks.config.mvp.MvpView;
@@ -12,9 +13,13 @@ public class ItemDetailsActivityContract {
 
     interface View extends MvpView {
         void setDataOfMovieReview(ResultDetails resultDetails);
+
+        void setDataOfBook(BookDetails bookDetails, String amazonLink, String imageBook);
     }
 
     interface Presenter extends MvpPresenter {
         void getSelectedMovieDetails(String query);
+
+        void getSelectedBookDetails(String isbn, String listName, String imageBook);
     }
 }

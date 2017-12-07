@@ -21,7 +21,10 @@ public class Book {
     @SerializedName("book_image_heigth")
     @Expose
     int bookImageHeight;
-
+    @SerializedName("primary_isbn13")
+    @Expose
+    private String isbn;
+    private String bestSellerTitle;
 
     public int getRank() {
         return rank;
@@ -58,5 +61,26 @@ public class Book {
 
     public void setBookImageHeight(final int bookImageHeight) {
         this.bookImageHeight = bookImageHeight;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(final String isbn) {
+        this.isbn = isbn;
+    }
+
+    public Book withIsbn(final String isbn) {
+        this.isbn = isbn;
+        return this;
+    }
+
+    public String getBestSellerTitle() {
+        return bestSellerTitle;
+    }
+
+    public void setBestSellerTitle(final String bestSellerTitle) {
+        this.bestSellerTitle = bestSellerTitle;
     }
 }
