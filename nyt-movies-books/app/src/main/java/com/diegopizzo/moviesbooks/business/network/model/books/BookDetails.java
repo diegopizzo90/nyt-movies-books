@@ -18,15 +18,6 @@ public class BookDetails {
     @SerializedName("author")
     @Expose
     String author;
-    @SerializedName("price")
-    @Expose
-    int price;
-    @SerializedName("age_group")
-    @Expose
-    String ageGroup;
-    @SerializedName("publisher")
-    @Expose
-    String publisher;
 
     public String getTitle() {
         return title;
@@ -64,45 +55,6 @@ public class BookDetails {
 
     public BookDetails withAuthor(final String author) {
         this.author = author;
-        return this;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(final int price) {
-        this.price = price;
-    }
-
-    public BookDetails withPrice(final int price) {
-        this.price = price;
-        return this;
-    }
-
-    public String getAgeGroup() {
-        return ageGroup;
-    }
-
-    public void setAgeGroup(final String ageGroup) {
-        this.ageGroup = ageGroup;
-    }
-
-    public BookDetails withAgeGroup(final String ageGroup) {
-        this.ageGroup = ageGroup;
-        return this;
-    }
-
-    public String getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(final String publisher) {
-        this.publisher = publisher;
-    }
-
-    public BookDetails withPublisher(final String publisher) {
-        this.publisher = publisher;
         return this;
     }
 }
