@@ -7,10 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.diegopizzo.moviesbooks.R;
 import com.diegopizzo.moviesbooks.ui.ViewPagerAdapter;
 import com.diegopizzo.moviesbooks.ui.mainactivity.booksfragment.BooksFragment;
+import com.diegopizzo.moviesbooks.ui.mainactivity.copyrightdialogfragment.CopyrightDialogFragment;
 import com.diegopizzo.moviesbooks.ui.mainactivity.moviesreviewsfragment.MoviesReviewsFragment;
 
 public class MainActivity extends AppCompatActivity implements MoviesReviewsFragment.OnFragmentInteractionListener,
@@ -62,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements MoviesReviewsFrag
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
         final MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.option_menu_movies, menu);
+        inflater.inflate(R.menu.option_menu_layout, menu);
         switch (mViewPager.getCurrentItem()) {
             case MoviesReviewsFragment.VIEW_PAGER_POSITION:
                 setVisibilityItemsMenu(menu, true);
@@ -72,6 +74,17 @@ public class MainActivity extends AppCompatActivity implements MoviesReviewsFrag
                 break;
         }
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.copyrightInfo:
+                CopyrightDialogFragment.newInstance().show(getFragmentManager(), CopyrightDialogFragment.TAG);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void setVisibilityItemsMenu(final Menu menu, final boolean isVisible) {

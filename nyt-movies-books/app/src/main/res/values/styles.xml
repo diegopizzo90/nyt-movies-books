@@ -35,8 +35,17 @@
         <item name="colorButtonNormal">@color/colorPrimaryMyTheme</item>
         <item name="android:textColor">@color/cardview_light_background</item>
     </style>
-    
+
     <style name="myCustomMenuTextApearance" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
         <item name="android:textColor">@color/cardview_dark_background</item>
+    </style>
+
+    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!-- Used for the buttons -->
+        <item name="colorAccent">@color/colorPrimaryMyTheme</item>
+        <!-- Used for the title and text -->
+        <item name="android:textColorPrimary">#000</item>
+        <!-- Used for the background -->
+        <!--<item name="android:background">#4CAF50</item>-->
     </style>
 </resources>
