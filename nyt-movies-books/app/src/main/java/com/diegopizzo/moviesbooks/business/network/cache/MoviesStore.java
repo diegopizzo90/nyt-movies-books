@@ -30,8 +30,7 @@ public class MoviesStore {
                 .open();
 
         storeDetails = StoreBuilder.<String, MovieDetails>key()
-                .fetcher(key ->
-                        moviesService.getMovieReview(key))
+                .fetcher(moviesService::getMovieReview)
                 .open();
     }
 

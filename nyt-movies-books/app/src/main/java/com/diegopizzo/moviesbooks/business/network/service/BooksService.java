@@ -1,6 +1,7 @@
 package com.diegopizzo.moviesbooks.business.network.service;
 
 import com.diegopizzo.moviesbooks.business.network.model.books.BestsellerList;
+import com.diegopizzo.moviesbooks.business.network.model.books.BooksFound;
 import com.diegopizzo.moviesbooks.business.network.model.books.Details;
 
 import io.reactivex.Single;
@@ -38,4 +39,13 @@ public interface BooksService {
     @Headers({"Content-Type: application/json", "apikey: " + API_KEY})
     @GET("/svc/books/v3/lists//.json")
     Single<Details> getBookDetails(@Query("isbn") String isbn, @Query("list-name") String listName);
+
+
+    /**
+     * @param title The title of the best seller. When searching, you can specify a portion of a title or a full title.
+     * @return one or list of bestsellers
+     */
+    @Headers({"Content-Type: application/json", "apikey: " + API_KEY})
+    @GET("/svc/books/v3/lists/best-sellers/history.json")
+    Single<BooksFound> findBestsellers(@Query("title") String title);
 }
