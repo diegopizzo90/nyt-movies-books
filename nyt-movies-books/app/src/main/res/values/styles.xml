@@ -12,9 +12,9 @@
 
     <style name="MyTheme" parent="AppTheme">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimaryMyTheme</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDarkMyTheme</item>
-        <item name="colorAccent">@color/colorAccentMyTheme</item>
+        <item name="colorPrimary">@color/colorPrimaryMovies</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkMovies</item>
+        <item name="colorAccent">@color/colorAccentMovies</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:textColorPrimary">@color/cardview_light_background</item>
@@ -31,8 +31,8 @@
     </style>
 
     <style name="MyButton" parent="Theme.AppCompat.Light">
-        <item name="colorControlHighlight">@color/colorPrimaryDarkMyTheme</item>
-        <item name="colorButtonNormal">@color/colorPrimaryMyTheme</item>
+        <item name="colorControlHighlight">@color/colorPrimaryDarkMovies</item>
+        <item name="colorButtonNormal">@color/colorPrimaryMovies</item>
         <item name="android:textColor">@color/cardview_light_background</item>
     </style>
 
@@ -42,7 +42,7 @@
 
     <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
         <!-- Used for the buttons -->
-        <item name="colorAccent">@color/colorPrimaryMyTheme</item>
+        <item name="colorAccent">@color/colorPrimaryMovies</item>
         <!-- Used for the title and text -->
         <item name="android:textColorPrimary">#000</item>
         <!-- Used for the background -->

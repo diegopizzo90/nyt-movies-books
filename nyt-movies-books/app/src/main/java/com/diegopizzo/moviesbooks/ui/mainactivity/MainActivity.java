@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.diegopizzo.moviesbooks.R;
+import com.diegopizzo.moviesbooks.ui.ThemeUtils;
 import com.diegopizzo.moviesbooks.ui.ViewPagerAdapter;
 import com.diegopizzo.moviesbooks.ui.mainactivity.booksfragment.BooksFragment;
 import com.diegopizzo.moviesbooks.ui.mainactivity.copyrightdialogfragment.CopyrightDialogFragment;
@@ -40,11 +41,13 @@ public class MainActivity extends AppCompatActivity implements MoviesReviewsFrag
             @Override
             public void onPageScrolled(final int position, final float positionOffset, final int positionOffsetPixels) {
                 invalidateOptionsMenu();
+                eventOnPageChanged();
             }
 
             @Override
             public void onPageSelected(final int position) {
                 invalidateOptionsMenu();
+                eventOnPageChanged();
             }
 
             @Override
@@ -74,6 +77,23 @@ public class MainActivity extends AppCompatActivity implements MoviesReviewsFrag
                 break;
         }
         return true;
+    }
+
+    private void eventOnPageChanged() {
+        switch (mViewPager.getCurrentItem()) {
+            case MoviesReviewsFragment.VIEW_PAGER_POSITION:
+                changeColorsTheme(R.color.colorPrimaryMovies, R.color.colorPrimaryDarkMovies);
+                break;
+            case BooksFragment.VIEW_PAGER_POSITION:
+                changeColorsTheme(R.color.colorPrimaryBooks, R.color.colorPrimaryDarkBooks);
+                break;
+        }
+    }
+
+    private void changeColorsTheme(final int colorPrimary, final int colorPrimaryDark) {
+        ThemeUtils.setStatusBarColor(getResources().getColor(colorPrimaryDark), this);
+        ThemeUtils.setPrimaryColorActionBar(getSupportActionBar(), getResources().getColor(colorPrimary));
+        ThemeUtils.setPrimaryColorViewPager(mTabLayout, getResources().getColor(colorPrimary));
     }
 
     @Override

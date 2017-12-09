@@ -3,8 +3,11 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorPrimaryMyTheme">#2e7d32</color>
-    <color name="colorPrimaryDarkMyTheme">#33691e</color>
-    <color name="colorAccentMyTheme">#45b94b</color>
+    <color name="colorPrimaryMovies">#0f9d58</color>
+    <color name="colorPrimaryDarkMovies">#0c7e46</color>
+    <color name="colorAccentMovies">#fff</color>
+    <color name="colorPrimaryBooks">#039be5</color>
+    <color name="colorPrimaryDarkBooks">#027cb7</color>
+    <color name="colorAccentBooks">#fff</color>
     <color name="secondary_text_lightMyTheme">@android:color/secondary_text_light</color>
 </resources>
