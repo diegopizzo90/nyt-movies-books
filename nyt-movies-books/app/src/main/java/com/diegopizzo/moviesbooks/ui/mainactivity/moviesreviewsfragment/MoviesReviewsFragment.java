@@ -16,11 +16,11 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
 import com.diegopizzo.moviesbooks.R;
-import com.diegopizzo.moviesbooks.business.network.model.movies.Movies;
+import com.diegopizzo.moviesbooks.business.network.model.movies.moviesreviews.Movies;
 import com.diegopizzo.moviesbooks.business.network.service.ServiceConstants;
 import com.diegopizzo.moviesbooks.config.MoviesBooksApplication;
 import com.diegopizzo.moviesbooks.config.mvp.AbstractMvpFragment;
-import com.diegopizzo.moviesbooks.ui.EndlessRecyclerViewScrollListener;
+import com.diegopizzo.moviesbooks.ui.utils.EndlessRecyclerViewScrollListener;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 

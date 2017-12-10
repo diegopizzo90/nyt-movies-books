@@ -3,7 +3,7 @@ package com.diegopizzo.moviesbooks.ui.mainactivity.moviesreviewsfragment;
 import android.util.Log;
 
 import com.diegopizzo.moviesbooks.business.interactor.MoviesInteractor;
-import com.diegopizzo.moviesbooks.business.network.model.movies.Movies;
+import com.diegopizzo.moviesbooks.business.network.model.movies.moviesreviews.Movies;
 import com.diegopizzo.moviesbooks.business.network.service.ServiceConstants;
 
 import io.reactivex.Single;

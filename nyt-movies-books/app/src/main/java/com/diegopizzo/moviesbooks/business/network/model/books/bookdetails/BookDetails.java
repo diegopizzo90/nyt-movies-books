@@ -1,4 +1,4 @@
-package com.diegopizzo.moviesbooks.business.network.model.books;
+package com.diegopizzo.moviesbooks.business.network.model.books.bookdetails;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -11,13 +11,13 @@ public class BookDetails {
 
     @SerializedName("title")
     @Expose
-    String title;
+    private String title;
     @SerializedName("description")
     @Expose
-    String description;
+    private String description;
     @SerializedName("author")
     @Expose
-    String author;
+    private String author;
 
     public String getTitle() {
         return title;

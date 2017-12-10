@@ -3,7 +3,7 @@ package com.diegopizzo.moviesbooks.ui.mainactivity.booksfragment;
 import android.util.Log;
 
 import com.diegopizzo.moviesbooks.business.interactor.BooksInteractor;
-import com.diegopizzo.moviesbooks.business.network.model.books.BestsellerList;
+import com.diegopizzo.moviesbooks.business.network.model.books.bestsellerlist.BestsellerList;
 
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;

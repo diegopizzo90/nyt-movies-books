@@ -12,11 +12,10 @@ import android.view.MenuItem;
 
 import com.arlib.floatingsearchview.FloatingSearchView;
 import com.diegopizzo.moviesbooks.R;
-import com.diegopizzo.moviesbooks.ui.ThemeUtils;
-import com.diegopizzo.moviesbooks.ui.ViewPagerAdapter;
 import com.diegopizzo.moviesbooks.ui.mainactivity.booksfragment.BooksFragment;
 import com.diegopizzo.moviesbooks.ui.mainactivity.copyrightdialogfragment.CopyrightDialogFragment;
 import com.diegopizzo.moviesbooks.ui.mainactivity.moviesreviewsfragment.MoviesReviewsFragment;
+import com.diegopizzo.moviesbooks.ui.utils.ThemeUtils;
 
 public class MainActivity extends AppCompatActivity implements MoviesReviewsFragment.OnFragmentInteractionListener,
         BooksFragment.OnFragmentInteractionListener {

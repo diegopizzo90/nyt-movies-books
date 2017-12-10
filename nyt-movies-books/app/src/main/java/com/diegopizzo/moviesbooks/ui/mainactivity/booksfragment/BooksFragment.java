@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.diegopizzo.moviesbooks.R;
-import com.diegopizzo.moviesbooks.business.network.model.books.BestsellerList;
+import com.diegopizzo.moviesbooks.business.network.model.books.bestsellerlist.BestsellerList;
 import com.diegopizzo.moviesbooks.config.MoviesBooksApplication;
 import com.diegopizzo.moviesbooks.config.mvp.AbstractMvpFragment;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;

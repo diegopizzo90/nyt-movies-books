@@ -1,4 +1,4 @@
-package com.diegopizzo.moviesbooks.ui;
+package com.diegopizzo.moviesbooks.ui.utils;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;

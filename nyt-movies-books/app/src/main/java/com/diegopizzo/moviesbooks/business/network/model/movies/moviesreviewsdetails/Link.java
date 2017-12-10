@@ -1,4 +1,4 @@
-package com.diegopizzo.moviesbooks.business.network.model.movies;
+package com.diegopizzo.moviesbooks.business.network.model.movies.moviesreviewsdetails;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -11,10 +11,10 @@ public class Link {
 
     @SerializedName("url")
     @Expose
-    String url;
+    private String url;
     @SerializedName("suggested_link_text")
     @Expose
-    String suggestedLinkText;
+    private String suggestedLinkText;
 
     public String getUrl() {
         return url;

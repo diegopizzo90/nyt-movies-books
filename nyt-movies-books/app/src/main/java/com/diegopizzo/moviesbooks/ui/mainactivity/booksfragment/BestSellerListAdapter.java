@@ -11,8 +11,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.diegopizzo.moviesbooks.R;
-import com.diegopizzo.moviesbooks.business.network.model.books.Book;
-import com.diegopizzo.moviesbooks.business.network.model.books.ListResults;
+import com.diegopizzo.moviesbooks.business.network.model.books.bestsellerlist.Book;
+import com.diegopizzo.moviesbooks.business.network.model.books.bestsellerlist.ListResults;
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper;
 
 import java.util.ArrayList;
@@ -72,7 +72,7 @@ public class BestSellerListAdapter extends RecyclerView.Adapter<BestSellerListAd
             }
         }
     }
-    
+
     // Provide a direct reference to each of the views within a data item
     // Used to cache the views within the item layout for fast access
     public class ViewHolder extends RecyclerView.ViewHolder {

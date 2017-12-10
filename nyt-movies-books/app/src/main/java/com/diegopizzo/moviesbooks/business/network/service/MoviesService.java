@@ -1,7 +1,7 @@
 package com.diegopizzo.moviesbooks.business.network.service;
 
-import com.diegopizzo.moviesbooks.business.network.model.movies.MovieDetails;
-import com.diegopizzo.moviesbooks.business.network.model.movies.Movies;
+import com.diegopizzo.moviesbooks.business.network.model.movies.moviesreviews.Movies;
+import com.diegopizzo.moviesbooks.business.network.model.movies.moviesreviewsdetails.MovieDetails;
 
 import io.reactivex.Single;
 import retrofit2.http.GET;

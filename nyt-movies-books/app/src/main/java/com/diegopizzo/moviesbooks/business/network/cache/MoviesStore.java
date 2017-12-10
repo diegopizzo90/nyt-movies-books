@@ -1,7 +1,7 @@
 package com.diegopizzo.moviesbooks.business.network.cache;
 
-import com.diegopizzo.moviesbooks.business.network.model.movies.MovieDetails;
-import com.diegopizzo.moviesbooks.business.network.model.movies.Movies;
+import com.diegopizzo.moviesbooks.business.network.model.movies.moviesreviews.Movies;
+import com.diegopizzo.moviesbooks.business.network.model.movies.moviesreviewsdetails.MovieDetails;
 import com.diegopizzo.moviesbooks.business.network.service.MoviesService;
 import com.diegopizzo.moviesbooks.business.network.service.ServiceConstants;
 import com.nytimes.android.external.store3.base.impl.Store;

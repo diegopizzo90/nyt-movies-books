@@ -1,6 +1,6 @@
 package com.diegopizzo.moviesbooks.ui.mainactivity.booksfragment;
 
-import com.diegopizzo.moviesbooks.business.network.model.books.BestsellerList;
+import com.diegopizzo.moviesbooks.business.network.model.books.bestsellerlist.BestsellerList;
 import com.diegopizzo.moviesbooks.config.mvp.MvpPresenter;
 import com.diegopizzo.moviesbooks.config.mvp.MvpView;
 

@@ -1,6 +1,6 @@
 package com.diegopizzo.moviesbooks.ui.mainactivity.moviesreviewsfragment;
 
-import com.diegopizzo.moviesbooks.business.network.model.movies.Movies;
+import com.diegopizzo.moviesbooks.business.network.model.movies.moviesreviews.Movies;
 import com.diegopizzo.moviesbooks.business.network.service.ServiceConstants;
 import com.diegopizzo.moviesbooks.config.mvp.MvpPresenter;
 import com.diegopizzo.moviesbooks.config.mvp.MvpView;

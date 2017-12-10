@@ -1,5 +1,6 @@
-package com.diegopizzo.moviesbooks.business.network.model.movies;
+package com.diegopizzo.moviesbooks.business.network.model.movies.moviesreviewsdetails;
 
+import com.diegopizzo.moviesbooks.business.network.model.movies.moviesreviews.Result;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -11,10 +12,10 @@ public class ResultDetails extends Result {
 
     @SerializedName("summary_short")
     @Expose
-    String summaryShort;
+    private String summaryShort;
     @SerializedName("link")
     @Expose
-    Link link;
+    private Link link;
 
     public String getSummaryShort() {
         return summaryShort;

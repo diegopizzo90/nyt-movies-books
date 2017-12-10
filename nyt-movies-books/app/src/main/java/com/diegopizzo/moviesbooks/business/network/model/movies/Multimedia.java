@@ -11,13 +11,13 @@ public class Multimedia {
 
     @SerializedName("src")
     @Expose
-    String src;
+    private String src;
     @SerializedName("width")
     @Expose
-    int width;
+    private int width;
     @SerializedName("height")
     @Expose
-    int height;
+    private int height;
 
     public String getSrc() {
         return src;

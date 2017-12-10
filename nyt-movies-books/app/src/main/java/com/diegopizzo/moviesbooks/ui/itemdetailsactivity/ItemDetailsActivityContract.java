@@ -1,7 +1,7 @@
 package com.diegopizzo.moviesbooks.ui.itemdetailsactivity;
 
-import com.diegopizzo.moviesbooks.business.network.model.books.BookDetails;
-import com.diegopizzo.moviesbooks.business.network.model.movies.ResultDetails;
+import com.diegopizzo.moviesbooks.business.network.model.books.bookdetails.BookDetails;
+import com.diegopizzo.moviesbooks.business.network.model.movies.moviesreviewsdetails.ResultDetails;
 import com.diegopizzo.moviesbooks.config.mvp.MvpPresenter;
 import com.diegopizzo.moviesbooks.config.mvp.MvpView;
 

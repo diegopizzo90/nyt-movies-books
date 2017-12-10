@@ -1,8 +1,8 @@
 package com.diegopizzo.moviesbooks.business.network.cache;
 
-import com.diegopizzo.moviesbooks.business.network.model.books.BestsellerList;
-import com.diegopizzo.moviesbooks.business.network.model.books.BooksFound;
-import com.diegopizzo.moviesbooks.business.network.model.books.Details;
+import com.diegopizzo.moviesbooks.business.network.model.books.bestsellerlist.BestsellerList;
+import com.diegopizzo.moviesbooks.business.network.model.books.bookdetails.Details;
+import com.diegopizzo.moviesbooks.business.network.model.books.booksearchable.BooksFound;
 import com.diegopizzo.moviesbooks.business.network.service.BooksService;
 import com.nytimes.android.external.store3.base.impl.Store;
 import com.nytimes.android.external.store3.base.impl.StoreBuilder;

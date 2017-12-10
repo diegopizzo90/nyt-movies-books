@@ -1,4 +1,4 @@
-package com.diegopizzo.moviesbooks.business.network.model.books;
+package com.diegopizzo.moviesbooks.business.network.model.books.bookdetails;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -13,7 +13,7 @@ public class Details {
 
     @SerializedName("results")
     @Expose
-    List<ResultsDetails> results;
+    private List<ResultsDetails> results;
 
     public List<ResultsDetails> getResults() {
         return results;

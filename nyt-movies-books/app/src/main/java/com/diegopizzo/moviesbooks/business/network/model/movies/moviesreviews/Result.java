@@ -1,5 +1,6 @@
-package com.diegopizzo.moviesbooks.business.network.model.movies;
+package com.diegopizzo.moviesbooks.business.network.model.movies.moviesreviews;
 
+import com.diegopizzo.moviesbooks.business.network.model.movies.Multimedia;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -11,16 +12,16 @@ public class Result {
 
     @SerializedName("display_title")
     @Expose
-    String displayTitle;
+    private String displayTitle;
     @SerializedName("byline")
     @Expose
-    String byline;
+    private String byline;
     @SerializedName("headline")
     @Expose
-    String headline;
+    private String headline;
     @SerializedName("multimedia")
     @Expose
-    Multimedia multimedia;
+    private Multimedia multimedia;
 
     public String getDisplayTitle() {
         return displayTitle;

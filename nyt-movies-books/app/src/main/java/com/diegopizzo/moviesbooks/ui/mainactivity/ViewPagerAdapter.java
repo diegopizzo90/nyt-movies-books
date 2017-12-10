@@ -1,4 +1,4 @@
-package com.diegopizzo.moviesbooks.ui;
+package com.diegopizzo.moviesbooks.ui.mainactivity;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

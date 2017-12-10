@@ -1,8 +1,8 @@
 package com.diegopizzo.moviesbooks.business.network.service;
 
-import com.diegopizzo.moviesbooks.business.network.model.books.BestsellerList;
-import com.diegopizzo.moviesbooks.business.network.model.books.BooksFound;
-import com.diegopizzo.moviesbooks.business.network.model.books.Details;
+import com.diegopizzo.moviesbooks.business.network.model.books.bestsellerlist.BestsellerList;
+import com.diegopizzo.moviesbooks.business.network.model.books.bookdetails.Details;
+import com.diegopizzo.moviesbooks.business.network.model.books.booksearchable.BooksFound;
 
 import io.reactivex.Single;
 import retrofit2.http.GET;

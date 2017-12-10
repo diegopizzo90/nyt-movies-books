@@ -1,8 +1,8 @@
 package com.diegopizzo.moviesbooks.business.interactor;
 
 import com.diegopizzo.moviesbooks.business.network.cache.MoviesStore;
-import com.diegopizzo.moviesbooks.business.network.model.movies.MovieDetails;
-import com.diegopizzo.moviesbooks.business.network.model.movies.Movies;
+import com.diegopizzo.moviesbooks.business.network.model.movies.moviesreviews.Movies;
+import com.diegopizzo.moviesbooks.business.network.model.movies.moviesreviewsdetails.MovieDetails;
 import com.diegopizzo.moviesbooks.business.network.service.ServiceConstants;
 
 import io.reactivex.Single;

@@ -1,4 +1,4 @@
-package com.diegopizzo.moviesbooks.business.network.model.books;
+package com.diegopizzo.moviesbooks.business.network.model.books.bestsellerlist;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -11,16 +11,16 @@ public class Book {
 
     @SerializedName("rank")
     @Expose
-    int rank;
+    private int rank;
     @SerializedName("book_image")
     @Expose
-    String bookImage;
+    private String bookImage;
     @SerializedName("book_image_width")
     @Expose
-    int bookImageWidth;
+    private int bookImageWidth;
     @SerializedName("book_image_heigth")
     @Expose
-    int bookImageHeight;
+    private int bookImageHeight;
     @SerializedName("primary_isbn13")
     @Expose
     private String isbn;

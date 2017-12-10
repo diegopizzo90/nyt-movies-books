@@ -1,4 +1,4 @@
-package com.diegopizzo.moviesbooks.business.network.model.books;
+package com.diegopizzo.moviesbooks.business.network.model.books.bookdetails;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -13,10 +13,10 @@ public class ResultsDetails {
 
     @SerializedName("amazon_product_url")
     @Expose
-    String amazonProductUrl;
+    private String amazonProductUrl;
     @SerializedName("book_details")
     @Expose
-    List<BookDetails> bookDetails;
+    private List<BookDetails> bookDetails;
 
     public String getAmazonProductUrl() {
         return amazonProductUrl;

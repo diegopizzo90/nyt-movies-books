@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.diegopizzo.moviesbooks.R;
-import com.diegopizzo.moviesbooks.business.network.model.books.BookDetails;
-import com.diegopizzo.moviesbooks.business.network.model.movies.ResultDetails;
+import com.diegopizzo.moviesbooks.business.network.model.books.bookdetails.BookDetails;
+import com.diegopizzo.moviesbooks.business.network.model.movies.moviesreviewsdetails.ResultDetails;
 import com.diegopizzo.moviesbooks.config.MoviesBooksApplication;
 import com.diegopizzo.moviesbooks.config.mvp.AbstractMvpActivity;
 import com.diegopizzo.moviesbooks.ui.mainactivity.booksfragment.BookListAdapter;

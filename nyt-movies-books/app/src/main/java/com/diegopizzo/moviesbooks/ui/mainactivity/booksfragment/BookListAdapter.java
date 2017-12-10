@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.diegopizzo.moviesbooks.R;
-import com.diegopizzo.moviesbooks.business.network.model.books.Book;
+import com.diegopizzo.moviesbooks.business.network.model.books.bestsellerlist.Book;
 import com.diegopizzo.moviesbooks.ui.itemdetailsactivity.ItemDetailsActivity;
 
 import java.util.List;

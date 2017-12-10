@@ -1,4 +1,4 @@
-package com.diegopizzo.moviesbooks.ui;
+package com.diegopizzo.moviesbooks.ui.utils;
 
 import android.app.Activity;
 import android.graphics.Color;

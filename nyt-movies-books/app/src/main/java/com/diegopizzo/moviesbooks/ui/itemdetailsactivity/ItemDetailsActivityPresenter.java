@@ -4,10 +4,10 @@ import android.util.Log;
 
 import com.diegopizzo.moviesbooks.business.interactor.BooksInteractor;
 import com.diegopizzo.moviesbooks.business.interactor.MoviesInteractor;
-import com.diegopizzo.moviesbooks.business.network.model.books.Details;
-import com.diegopizzo.moviesbooks.business.network.model.books.ResultsDetails;
-import com.diegopizzo.moviesbooks.business.network.model.movies.MovieDetails;
-import com.diegopizzo.moviesbooks.business.network.model.movies.ResultDetails;
+import com.diegopizzo.moviesbooks.business.network.model.books.bookdetails.Details;
+import com.diegopizzo.moviesbooks.business.network.model.books.bookdetails.ResultsDetails;
+import com.diegopizzo.moviesbooks.business.network.model.movies.moviesreviewsdetails.MovieDetails;
+import com.diegopizzo.moviesbooks.business.network.model.movies.moviesreviewsdetails.ResultDetails;
 
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
