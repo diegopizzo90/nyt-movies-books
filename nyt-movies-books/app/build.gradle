@@ -77,6 +77,9 @@ dependencies {
     implementation "com.nytimes.android:cache3:$nyTimesCacheVersion"
     implementation "com.nytimes.android:store3:$nyTimesCacheVersion"
 
+    //https://github.com/arimorty/floatingsearchview
+    implementation 'com.github.arimorty:floatingsearchview:2.1.1'
+
     //TEST
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'

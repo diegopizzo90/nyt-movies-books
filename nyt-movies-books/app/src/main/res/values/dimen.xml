@@ -8,4 +8,5 @@
     <dimen name="imageview_movie_height">140dp</dimen>
     <dimen name="imageview_book_width">216dp</dimen>
     <dimen name="imageview_book_height">330dp</dimen>
+    <dimen name="search_view_height">55dp</dimen>
 </resources>

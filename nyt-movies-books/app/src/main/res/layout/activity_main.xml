@@ -7,14 +7,29 @@
     tools:context="com.diegopizzo.moviesbooks.ui.mainactivity.MainActivity">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayoutMain"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_scrollFlags="scroll|enterAlways|snap" />
+
+        <com.arlib.floatingsearchview.FloatingSearchView
+            android:id="@+id/floating_search_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/search_view_height"
+            app:floatingSearch_close_search_on_keyboard_dismiss="true"
+            app:floatingSearch_leftActionMode="showSearch"
+            app:floatingSearch_searchBarMarginLeft="@dimen/search_bar_left_icon_left_margin"
+            app:floatingSearch_searchBarMarginRight="@dimen/search_bar_right_icon_right_margin"
+            app:floatingSearch_searchHint="@string/search_movies_and_books"
+            app:floatingSearch_showSearchKey="false"
+            app:floatingSearch_showVoiceInput="true"
+            app:floatingSearch_suggestionsListAnimDuration="250" />
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tab"

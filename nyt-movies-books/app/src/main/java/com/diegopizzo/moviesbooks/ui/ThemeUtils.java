@@ -2,10 +2,8 @@ package com.diegopizzo.moviesbooks.ui;
 
 import android.app.Activity;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
-import android.support.design.widget.TabLayout;
-import android.support.v7.app.ActionBar;
+import android.support.design.widget.AppBarLayout;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -27,12 +25,7 @@ public class ThemeUtils {
         }
     }
 
-    public static void setPrimaryColorActionBar(final ActionBar actionBar, final int color) {
-        actionBar.setBackgroundDrawable(
-                new ColorDrawable(color));
-    }
-
-    public static void setPrimaryColorViewPager(final TabLayout tabLayout, final int color) {
-        tabLayout.setBackgroundColor(color);
+    public static void setPrimaryColorAppBar(final AppBarLayout appBarLayout, final int color) {
+        appBarLayout.setBackgroundColor(color);
     }
 }

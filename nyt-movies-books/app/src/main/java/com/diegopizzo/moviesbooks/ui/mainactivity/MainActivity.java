@@ -1,6 +1,7 @@
 package com.diegopizzo.moviesbooks.ui.mainactivity;
 
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.arlib.floatingsearchview.FloatingSearchView;
 import com.diegopizzo.moviesbooks.R;
 import com.diegopizzo.moviesbooks.ui.ThemeUtils;
 import com.diegopizzo.moviesbooks.ui.ViewPagerAdapter;
@@ -20,10 +22,12 @@ public class MainActivity extends AppCompatActivity implements MoviesReviewsFrag
         BooksFragment.OnFragmentInteractionListener {
 
 
+    private FloatingSearchView floatingSearchView;
     private ViewPager mViewPager;
     private Toolbar mToolbar;
     private TabLayout mTabLayout;
     private ViewPagerAdapter mViewPagerAdapter;
+    private AppBarLayout appBarLayout;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -34,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements MoviesReviewsFrag
     }
 
     public void setViewPager() {
+        appBarLayout = (AppBarLayout) findViewById(R.id.appBarLayoutMain);
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mViewPagerAdapter);
@@ -57,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements MoviesReviewsFrag
 
         mTabLayout = (TabLayout) findViewById(R.id.tab);
         mTabLayout.setupWithViewPager(mViewPager);
+
+        floatingSearchView = (FloatingSearchView) findViewById(R.id.floating_search_view);
     }
 
     public void setToolbar() {
@@ -92,8 +99,7 @@ public class MainActivity extends AppCompatActivity implements MoviesReviewsFrag
 
     private void changeColorsTheme(final int colorPrimary, final int colorPrimaryDark) {
         ThemeUtils.setStatusBarColor(getResources().getColor(colorPrimaryDark), this);
-        ThemeUtils.setPrimaryColorActionBar(getSupportActionBar(), getResources().getColor(colorPrimary));
-        ThemeUtils.setPrimaryColorViewPager(mTabLayout, getResources().getColor(colorPrimary));
+        ThemeUtils.setPrimaryColorAppBar(appBarLayout, getResources().getColor(colorPrimary));
     }
 
     @Override
