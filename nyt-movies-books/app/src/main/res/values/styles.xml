@@ -31,8 +31,6 @@
     </style>
 
     <style name="MyButton" parent="Theme.AppCompat.Light">
-        <item name="colorControlHighlight">@color/colorPrimaryDarkMovies</item>
-        <item name="colorButtonNormal">@color/colorPrimaryMovies</item>
         <item name="android:textColor">@color/cardview_light_background</item>
     </style>
 

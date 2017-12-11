@@ -19,6 +19,7 @@ import com.diegopizzo.moviesbooks.config.MoviesBooksApplication;
 import com.diegopizzo.moviesbooks.config.mvp.AbstractMvpActivity;
 import com.diegopizzo.moviesbooks.ui.mainactivity.booksfragment.BookListAdapter;
 import com.diegopizzo.moviesbooks.ui.mainactivity.moviesreviewsfragment.MoviesReviewsAdapter;
+import com.diegopizzo.moviesbooks.ui.utils.ThemeUtils;
 
 import butterknife.BindView;
 
@@ -63,11 +64,9 @@ public class ItemDetailsActivity extends AbstractMvpActivity<ItemDetailsActivity
         itemDescriptionTextView.setText(resultDetails.getSummaryShort());
         itemTitleDescriptionTextView.setText(resultDetails.getHeadline());
         button.setText(R.string.read_more);
+
         if (resultDetails.getMultimedia() != null) {
-            final ViewGroup.LayoutParams layoutParams = itemImageView.getLayoutParams();
-            layoutParams.width = (int) getResources().getDimension(R.dimen.imageview_movie_width);
-            layoutParams.height = (int) getResources().getDimension(R.dimen.imageview_movie_height);
-            itemImageView.setLayoutParams(layoutParams);
+            setMovieLayout();
             Glide.with(this).load(resultDetails.getMultimedia().getSrc()).into(itemImageView);
         }
         button.setOnClickListener(v -> {
@@ -80,6 +79,15 @@ public class ItemDetailsActivity extends AbstractMvpActivity<ItemDetailsActivity
         });
     }
 
+    private void setMovieLayout() {
+        ThemeUtils.setStatusBarColor(getResources().getColor(R.color.colorPrimaryDarkMovies), this);
+        ThemeUtils.setColorsButton(button, R.color.colorPrimaryMovies, R.color.colorPrimaryDarkMovies);
+        final ViewGroup.LayoutParams layoutParams = itemImageView.getLayoutParams();
+        layoutParams.width = (int) getResources().getDimension(R.dimen.imageview_movie_width);
+        layoutParams.height = (int) getResources().getDimension(R.dimen.imageview_movie_height);
+        itemImageView.setLayoutParams(layoutParams);
+    }
+
     @Override
     public void setDataOfBook(final BookDetails book, final String amazonLink, final String imageBook) {
         itemTitleTextView.setText(book.getTitle());
@@ -87,10 +95,7 @@ public class ItemDetailsActivity extends AbstractMvpActivity<ItemDetailsActivity
         itemDescriptionTextView.setText(book.getDescription());
         itemTitleDescriptionTextView.setVisibility(View.GONE);
         button.setText(R.string.buy_now);
-        final ViewGroup.LayoutParams layoutParams = itemImageView.getLayoutParams();
-        layoutParams.width = (int) getResources().getDimension(R.dimen.imageview_book_width);
-        layoutParams.height = (int) getResources().getDimension(R.dimen.imageview_book_height);
-        itemImageView.setLayoutParams(layoutParams);
+        setBookLayout();
         Glide.with(this).load(imageBook).into(itemImageView);
         button.setOnClickListener(v -> {
             if (!TextUtils.isEmpty(amazonLink)) {
@@ -99,6 +104,15 @@ public class ItemDetailsActivity extends AbstractMvpActivity<ItemDetailsActivity
                 startActivity(i);
             }
         });
+    }
+
+    private void setBookLayout() {
+        ThemeUtils.setStatusBarColor(getResources().getColor(R.color.colorPrimaryDarkBooks), this);
+        ThemeUtils.setColorsButton(button, R.color.colorPrimaryBooks, R.color.colorPrimaryDarkBooks);
+        final ViewGroup.LayoutParams layoutParams = itemImageView.getLayoutParams();
+        layoutParams.width = (int) getResources().getDimension(R.dimen.imageview_book_width);
+        layoutParams.height = (int) getResources().getDimension(R.dimen.imageview_book_height);
+        itemImageView.setLayoutParams(layoutParams);
     }
 
     private void passDataFromSelectedItemToPresenter() {

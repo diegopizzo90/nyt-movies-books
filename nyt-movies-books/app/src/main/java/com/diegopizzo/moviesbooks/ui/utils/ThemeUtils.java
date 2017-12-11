@@ -6,6 +6,7 @@ import android.os.Build;
 import android.support.design.widget.AppBarLayout;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 
 /**
  * Created by diegopizzo on 09/12/2017.
@@ -27,5 +28,10 @@ public class ThemeUtils {
 
     public static void setPrimaryColorAppBar(final AppBarLayout appBarLayout, final int color) {
         appBarLayout.setBackgroundColor(color);
+    }
+
+    public static void setColorsButton(final Button button, final int colorPrimary, final int colorPrimaryDark) {
+        button.setHighlightColor(colorPrimaryDark);
+        button.setBackgroundResource(colorPrimary);
     }
 }
