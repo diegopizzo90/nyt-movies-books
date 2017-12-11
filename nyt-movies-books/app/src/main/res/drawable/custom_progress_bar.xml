@@ -6,33 +6,33 @@
         <layer-list>
             <item>
                 <rotate
-                    android:fromDegrees="45"
+                    android:fromDegrees="15"
                     android:pivotX="50%"
                     android:pivotY="50%"
-                    android:toDegrees="315">
+                    android:toDegrees="1080">
                     <shape android:shape="rectangle">
                         <size
-                            android:width="80dp"
-                            android:height="80dp" />
+                            android:width="60dp"
+                            android:height="60dp" />
                         <stroke
-                            android:width="6dp"
-                            android:color="#0c7e46" />
+                            android:width="4dp"
+                            android:color="@color/colorPrimaryDarkBooks" />
                     </shape>
                 </rotate>
             </item>
             <item>
                 <rotate
-                    android:fromDegrees="90"
+                    android:fromDegrees="45"
                     android:pivotX="50%"
                     android:pivotY="50%"
-                    android:toDegrees="270">
+                    android:toDegrees="1080">
                     <shape android:shape="rectangle">
                         <size
-                            android:width="80dp"
-                            android:height="80dp" />
+                            android:width="60dp"
+                            android:height="60dp" />
                         <stroke
-                            android:width="6dp"
-                            android:color="#027cb7" />
+                            android:width="4dp"
+                            android:color="@color/colorPrimaryDarkMovies" />
                     </shape>
                 </rotate>
             </item>
