@@ -21,14 +21,14 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="?attr/actionBarSize"
                 app:layout_scrollFlags="scroll|enterAlways|snap" />
 
             <android.support.design.widget.TabLayout
                 android:id="@+id/tab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_collapseMode="parallax" />
+                app:layout_collapseMode="none" />
 
         </android.support.design.widget.AppBarLayout>
 
@@ -40,7 +40,7 @@
         android:id="@+id/floating_search_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:floatingSearch_close_search_on_keyboard_dismiss="false"
+        app:floatingSearch_close_search_on_keyboard_dismiss="true"
         app:floatingSearch_dimBackground="false"
         app:floatingSearch_dismissOnOutsideTouch="true"
         app:floatingSearch_leftActionMode="showSearch"
@@ -48,7 +48,6 @@
         app:floatingSearch_searchBarMarginLeft="@dimen/search_bar_left_icon_left_margin"
         app:floatingSearch_searchBarMarginRight="@dimen/search_bar_right_icon_right_margin"
         app:floatingSearch_searchHint="@string/search_movies_and_books"
-        app:floatingSearch_showSearchKey="true"
         app:floatingSearch_showVoiceInput="true"
         app:floatingSearch_suggestionsListAnimDuration="250" />
 

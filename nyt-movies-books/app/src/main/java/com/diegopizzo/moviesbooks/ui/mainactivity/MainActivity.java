@@ -4,12 +4,14 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.arlib.floatingsearchview.FloatingSearchView;
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
 import com.diegopizzo.moviesbooks.R;
+import com.diegopizzo.moviesbooks.config.MoviesBooksApplication;
+import com.diegopizzo.moviesbooks.config.mvp.AbstractMvpActivity;
 import com.diegopizzo.moviesbooks.ui.ItemSuggestion;
 import com.diegopizzo.moviesbooks.ui.mainactivity.booksfragment.BooksFragment;
 import com.diegopizzo.moviesbooks.ui.mainactivity.copyrightdialogfragment.CopyrightDialogFragment;
@@ -19,8 +21,8 @@ import com.diegopizzo.moviesbooks.ui.utils.ThemeUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements MoviesReviewsFragment.OnFragmentInteractionListener,
-        BooksFragment.OnFragmentInteractionListener {
+public class MainActivity extends AbstractMvpActivity<MainActivityContract.Presenter> implements MoviesReviewsFragment.OnFragmentInteractionListener,
+        BooksFragment.OnFragmentInteractionListener, MainActivityContract.View {
 
 
     private FloatingSearchView floatingSearchView;
@@ -33,10 +35,26 @@ public class MainActivity extends AppCompatActivity implements MoviesReviewsFrag
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         setToolbar();
         setFloatingSearchView();
         setViewPager();
+    }
+
+    @Override
+    protected void inject() {
+        DaggerMainActivityComponent.builder()
+                .applicationComponent(((MoviesBooksApplication) getApplication()).getApplicationComponent())
+                .mainActivityModule(new MainActivityModule(this)).build().inject(this);
+    }
+
+    @Override
+    protected int getLayout() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected View getRootLayoutView() {
+        return null;
     }
 
     public void setViewPager() {
@@ -102,13 +120,6 @@ public class MainActivity extends AppCompatActivity implements MoviesReviewsFrag
         floatingSearchView.setOnFocusChangeListener(new FloatingSearchView.OnFocusChangeListener() {
             @Override
             public void onFocus() {
-                final List<ItemSuggestion> itemSuggestionList = new ArrayList<>();
-                itemSuggestionList.add(new ItemSuggestion("Prova"));
-                itemSuggestionList.add(new ItemSuggestion("Prova1"));
-                itemSuggestionList.add(new ItemSuggestion("Prova2"));
-                itemSuggestionList.add(new ItemSuggestion("Prova3"));
-                itemSuggestionList.add(new ItemSuggestion("Prova4"));
-                floatingSearchView.swapSuggestions(itemSuggestionList);
             }
 
             @Override

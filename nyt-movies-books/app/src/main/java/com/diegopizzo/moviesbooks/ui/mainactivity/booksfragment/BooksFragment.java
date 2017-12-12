@@ -88,6 +88,7 @@ public class BooksFragment extends AbstractMvpFragment<BooksFragmentContract.Pre
             @Override
             public void onScrolled(final RecyclerView recyclerView, final int dx, final int dy) {
                 super.onScrolled(recyclerView, dx, dy);
+                Log.i("scroll", "" + dy);
                 onFragmentInteractionListener.collapseSearchBar(dy);
             }
         });
