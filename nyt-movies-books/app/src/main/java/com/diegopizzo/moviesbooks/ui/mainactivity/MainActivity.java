@@ -6,6 +6,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import com.arlib.floatingsearchview.FloatingSearchView;
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
@@ -18,13 +19,13 @@ import com.diegopizzo.moviesbooks.ui.mainactivity.copyrightdialogfragment.Copyri
 import com.diegopizzo.moviesbooks.ui.mainactivity.moviesreviewsfragment.MoviesReviewsFragment;
 import com.diegopizzo.moviesbooks.ui.utils.ThemeUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AbstractMvpActivity<MainActivityContract.Presenter> implements MoviesReviewsFragment.OnFragmentInteractionListener,
         BooksFragment.OnFragmentInteractionListener, MainActivityContract.View {
 
 
+    private static final int LENGHT_QUERY_MIN_SEARCH = 3;
     private FloatingSearchView floatingSearchView;
     private ViewPager mViewPager;
     private Toolbar mToolbar;
@@ -97,13 +98,22 @@ public class MainActivity extends AbstractMvpActivity<MainActivityContract.Prese
     private void setFloatingSearchView() {
         floatingSearchView = (FloatingSearchView) findViewById(R.id.floating_search_view);
         floatingSearchView.setOnQueryChangeListener((oldQuery, newQuery) -> {
-            final List<ItemSuggestion> itemSuggestionList = new ArrayList<>();
-            itemSuggestionList.add(new ItemSuggestion("Prova"));
-            itemSuggestionList.add(new ItemSuggestion("Prova1"));
-            itemSuggestionList.add(new ItemSuggestion("Prova2"));
-            itemSuggestionList.add(new ItemSuggestion("Prova3"));
-            itemSuggestionList.add(new ItemSuggestion("Prova4"));
-            floatingSearchView.swapSuggestions(itemSuggestionList);
+            if (oldQuery.length() <= LENGHT_QUERY_MIN_SEARCH
+                    && newQuery.length() <= LENGHT_QUERY_MIN_SEARCH) {
+                floatingSearchView.clearSuggestions();
+            } else {
+                presenter.getItemsSearched(newQuery);
+            }
+        });
+
+        floatingSearchView.setOnBindSuggestionCallback((suggestionView, leftIcon, textView, item, itemPosition) -> {
+            final ItemSuggestion itemSuggestion = (ItemSuggestion) item;
+
+            if (ItemSuggestion.TypeItem.MOVIE.equals(itemSuggestion.getTypeItem())) {
+                leftIcon.setImageDrawable(getDrawable(R.drawable.ic_local_movies_black_24dp));
+            } else {
+                leftIcon.setImageDrawable(getDrawable(R.drawable.ic_library_books_black_24dp));
+            }
         });
 
         floatingSearchView.setOnSearchListener(new FloatingSearchView.OnSearchListener() {
@@ -113,18 +123,7 @@ public class MainActivity extends AbstractMvpActivity<MainActivityContract.Prese
 
             @Override
             public void onSearchAction(final String currentQuery) {
-
-            }
-        });
-
-        floatingSearchView.setOnFocusChangeListener(new FloatingSearchView.OnFocusChangeListener() {
-            @Override
-            public void onFocus() {
-            }
-
-            @Override
-            public void onFocusCleared() {
-
+                Toast.makeText(getBaseContext(), currentQuery, Toast.LENGTH_LONG).show();
             }
         });
 
@@ -154,5 +153,20 @@ public class MainActivity extends AbstractMvpActivity<MainActivityContract.Prese
     private void changeColorsTheme(final int colorPrimary, final int colorPrimaryDark) {
         ThemeUtils.setStatusBarColor(getResources().getColor(colorPrimaryDark), this);
         ThemeUtils.setPrimaryColorAppBar(appBarLayout, getResources().getColor(colorPrimary));
+    }
+
+    @Override
+    public void showProgressSearchView() {
+        floatingSearchView.showProgress();
+    }
+
+    @Override
+    public void hideProgressSearchView() {
+        floatingSearchView.hideProgress();
+    }
+
+    @Override
+    public void swapSearchView(final List<ItemSuggestion> itemSuggestionList) {
+        floatingSearchView.swapSuggestions(itemSuggestionList);
     }
 }

@@ -1,5 +1,7 @@
 package com.diegopizzo.moviesbooks.ui.mainactivity;
 
+import com.diegopizzo.moviesbooks.business.interactor.BooksInteractor;
+import com.diegopizzo.moviesbooks.business.interactor.MoviesInteractor;
 import com.diegopizzo.moviesbooks.config.dagger.ActivityScope;
 
 import dagger.Module;
@@ -20,7 +22,7 @@ public class MainActivityModule {
 
     @ActivityScope
     @Provides
-    MainActivityContract.Presenter providePresenter() {
-        return new MainActivityPresenter(view);
+    MainActivityContract.Presenter providePresenter(final MoviesInteractor moviesInteractor, final BooksInteractor booksInteractor) {
+        return new MainActivityPresenter(view, moviesInteractor, booksInteractor);
     }
 }

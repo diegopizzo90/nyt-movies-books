@@ -72,8 +72,8 @@ public class ItemDetailsActivityPresenter implements ItemDetailsActivityContract
                     }
                 }, throwable -> {
                     view.showContent();
-                    view.showMessage("Errore " + throwable.getMessage());
-                    Log.e("error", throwable.getMessage());
+                    view.showMessage("Item Selected Error " + throwable.getMessage());
+                    Log.e("Item Selected Error", throwable.getMessage());
                 });
     }
 

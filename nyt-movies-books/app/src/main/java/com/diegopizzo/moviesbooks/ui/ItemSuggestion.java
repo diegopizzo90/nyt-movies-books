@@ -23,13 +23,19 @@ public class ItemSuggestion implements SearchSuggestion {
     };
 
     private final String itemName;
+    private TypeItem typeItem;
 
-    public ItemSuggestion(final String itemName) {
+    public ItemSuggestion(final String itemName, final TypeItem typeItem) {
         this.itemName = itemName;
+        this.typeItem = typeItem;
     }
 
     public ItemSuggestion(final Parcel source) {
         this.itemName = source.readString();
+    }
+
+    public TypeItem getTypeItem() {
+        return typeItem;
     }
 
     @Override
@@ -45,5 +51,10 @@ public class ItemSuggestion implements SearchSuggestion {
     @Override
     public void writeToParcel(final Parcel dest, final int flags) {
         dest.writeString(itemName);
+    }
+
+    public enum TypeItem {
+        MOVIE,
+        BOOK
     }
 }

@@ -14,12 +14,11 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimaryMovies</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDarkMovies</item>
-        <item name="colorAccent">@color/colorAccentMovies</item>
+        <item name="colorAccent">@color/clear_btn_color</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:textColorPrimary">@color/cardview_light_background</item>
         <item name="android:textColorSecondary">@color/cardview_light_background</item>
-
         <!-- To change the popup menu and app text color  -->
         <item name="android:itemTextAppearance">@style/myCustomMenuTextApearance</item>
 
@@ -52,4 +51,5 @@
         <item name="android:minHeight">60dp</item>
         <item name="android:minWidth">200dp</item>
     </style>
+
 </resources>
