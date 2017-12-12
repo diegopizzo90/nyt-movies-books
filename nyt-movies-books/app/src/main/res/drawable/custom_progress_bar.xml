@@ -6,7 +6,7 @@
         <layer-list>
             <item>
                 <rotate
-                    android:fromDegrees="15"
+                    android:fromDegrees="0"
                     android:pivotX="50%"
                     android:pivotY="50%"
                     android:toDegrees="1080">
@@ -22,10 +22,10 @@
             </item>
             <item>
                 <rotate
-                    android:fromDegrees="45"
+                    android:fromDegrees="90"
                     android:pivotX="50%"
                     android:pivotY="50%"
-                    android:toDegrees="1080">
+                    android:toDegrees="2080">
                     <shape android:shape="rectangle">
                         <size
                             android:width="60dp"

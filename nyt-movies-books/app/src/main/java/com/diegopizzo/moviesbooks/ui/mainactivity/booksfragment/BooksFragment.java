@@ -83,6 +83,14 @@ public class BooksFragment extends AbstractMvpFragment<BooksFragmentContract.Pre
         // Attach the layout manager to the recycler view
         bestSellerRecyclerView.setLayoutManager(gridLayoutManager);
         bestSellerRecyclerView.setAdapter(bestSellerListAdapter);
+
+        bestSellerRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(final RecyclerView recyclerView, final int dx, final int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                onFragmentInteractionListener.collapseSearchBar(dy);
+            }
+        });
     }
 
     private void setSwypeRefreshLayout() {
@@ -156,5 +164,6 @@ public class BooksFragment extends AbstractMvpFragment<BooksFragmentContract.Pre
     }
 
     public interface OnFragmentInteractionListener {
+        void collapseSearchBar(float dy);
     }
 }

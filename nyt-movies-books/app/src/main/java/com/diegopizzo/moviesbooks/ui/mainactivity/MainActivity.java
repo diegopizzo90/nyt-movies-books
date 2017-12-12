@@ -6,16 +6,18 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 
 import com.arlib.floatingsearchview.FloatingSearchView;
+import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
 import com.diegopizzo.moviesbooks.R;
+import com.diegopizzo.moviesbooks.ui.ItemSuggestion;
 import com.diegopizzo.moviesbooks.ui.mainactivity.booksfragment.BooksFragment;
 import com.diegopizzo.moviesbooks.ui.mainactivity.copyrightdialogfragment.CopyrightDialogFragment;
 import com.diegopizzo.moviesbooks.ui.mainactivity.moviesreviewsfragment.MoviesReviewsFragment;
 import com.diegopizzo.moviesbooks.ui.utils.ThemeUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MoviesReviewsFragment.OnFragmentInteractionListener,
         BooksFragment.OnFragmentInteractionListener {
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements MoviesReviewsFrag
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setToolbar();
+        setFloatingSearchView();
         setViewPager();
     }
 
@@ -61,28 +64,69 @@ public class MainActivity extends AppCompatActivity implements MoviesReviewsFrag
 
         mTabLayout = (TabLayout) findViewById(R.id.tab);
         mTabLayout.setupWithViewPager(mViewPager);
+    }
 
+
+    @Override
+    public void collapseSearchBar(final float dy) {
+        if (dy > 0) {
+            floatingSearchView.setTranslationY(-256);
+        } else if (dy < 0) {
+            floatingSearchView.setTranslationY(0);
+        }
+    }
+
+    private void setFloatingSearchView() {
         floatingSearchView = (FloatingSearchView) findViewById(R.id.floating_search_view);
+        floatingSearchView.setOnQueryChangeListener((oldQuery, newQuery) -> {
+            final List<ItemSuggestion> itemSuggestionList = new ArrayList<>();
+            itemSuggestionList.add(new ItemSuggestion("Prova"));
+            itemSuggestionList.add(new ItemSuggestion("Prova1"));
+            itemSuggestionList.add(new ItemSuggestion("Prova2"));
+            itemSuggestionList.add(new ItemSuggestion("Prova3"));
+            itemSuggestionList.add(new ItemSuggestion("Prova4"));
+            floatingSearchView.swapSuggestions(itemSuggestionList);
+        });
+
+        floatingSearchView.setOnSearchListener(new FloatingSearchView.OnSearchListener() {
+            @Override
+            public void onSuggestionClicked(final SearchSuggestion searchSuggestion) {
+            }
+
+            @Override
+            public void onSearchAction(final String currentQuery) {
+
+            }
+        });
+
+        floatingSearchView.setOnFocusChangeListener(new FloatingSearchView.OnFocusChangeListener() {
+            @Override
+            public void onFocus() {
+                final List<ItemSuggestion> itemSuggestionList = new ArrayList<>();
+                itemSuggestionList.add(new ItemSuggestion("Prova"));
+                itemSuggestionList.add(new ItemSuggestion("Prova1"));
+                itemSuggestionList.add(new ItemSuggestion("Prova2"));
+                itemSuggestionList.add(new ItemSuggestion("Prova3"));
+                itemSuggestionList.add(new ItemSuggestion("Prova4"));
+                floatingSearchView.swapSuggestions(itemSuggestionList);
+            }
+
+            @Override
+            public void onFocusCleared() {
+
+            }
+        });
+
+        floatingSearchView.setOnMenuItemClickListener(item ->
+                CopyrightDialogFragment.newInstance().show(getFragmentManager(), CopyrightDialogFragment.TAG));
     }
 
     public void setToolbar() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(final Menu menu) {
-        final MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.option_menu_layout, menu);
-        switch (mViewPager.getCurrentItem()) {
-            case MoviesReviewsFragment.VIEW_PAGER_POSITION:
-                setVisibilityItemsMenu(menu, true);
-                break;
-            case BooksFragment.VIEW_PAGER_POSITION:
-                setVisibilityItemsMenu(menu, false);
-                break;
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
-        return true;
     }
 
     private void eventOnPageChanged() {
@@ -100,23 +144,4 @@ public class MainActivity extends AppCompatActivity implements MoviesReviewsFrag
         ThemeUtils.setStatusBarColor(getResources().getColor(colorPrimaryDark), this);
         ThemeUtils.setPrimaryColorAppBar(appBarLayout, getResources().getColor(colorPrimary));
     }
-
-    @Override
-    public boolean onOptionsItemSelected(final MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.copyrightInfo:
-                CopyrightDialogFragment.newInstance().show(getFragmentManager(), CopyrightDialogFragment.TAG);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    private void setVisibilityItemsMenu(final Menu menu, final boolean isVisible) {
-        menu.findItem(R.id.by_opening_date).setVisible(isVisible);
-        menu.findItem(R.id.by_publication_date).setVisible(isVisible);
-        menu.findItem(R.id.by_title).setVisible(isVisible);
-    }
-
-
 }

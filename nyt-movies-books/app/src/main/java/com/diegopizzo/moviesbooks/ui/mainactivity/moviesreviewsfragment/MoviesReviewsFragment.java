@@ -8,9 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -113,32 +110,6 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
         return 1;
     }
 
-    @Override
-    public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(final MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.by_opening_date:
-                orderBy = ServiceConstants.OrderMovies.BY_OPENING_DATE;
-                presenter.moviesReviews(0, true, orderBy);
-                return true;
-            case R.id.by_title:
-                orderBy = ServiceConstants.OrderMovies.BY_TITLE;
-                presenter.moviesReviews(0, true, orderBy);
-                return true;
-            case R.id.by_publication_date:
-                orderBy = ServiceConstants.OrderMovies.BY_PUBBLICATION_DATE;
-                presenter.moviesReviews(0, true, orderBy);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-
     private void restoreData(final Bundle savedInstanceState) {
         totalItems = savedInstanceState.getInt(TOT_ITEM_KEY);
         scrollListener.setPreviousTotalItemsCount(totalItems);
@@ -160,6 +131,13 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
             public void onLoadMore(final int page, final int totalItemsCount, final RecyclerView view) {
                 presenter.moviesReviews(totalItemsCount, false, orderBy);
                 totalItems = totalItemsCount;
+            }
+
+            @Override
+            public void onScrolled(final RecyclerView view, final int dx, final int dy) {
+                super.onScrolled(view, dx, dy);
+                Log.i("scroll", "" + dy);
+                onFragmentInteractionListener.collapseSearchBar(dy);
             }
         };
 
@@ -243,5 +221,6 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
     }
 
     public interface OnFragmentInteractionListener {
+        void collapseSearchBar(float dy);
     }
 }
