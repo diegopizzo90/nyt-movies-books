@@ -88,9 +88,9 @@ public class MainActivity extends AbstractMvpActivity<MainActivityContract.Prese
     @Override
     public void collapseSearchBar(final float dy) {
         if (dy > 0) {
-            floatingSearchView.setTranslationY(-256);
+            floatingSearchView.setTranslationY(floatingSearchView.getHeight());
         } else if (dy < 0) {
-            floatingSearchView.setTranslationY(0);
+            floatingSearchView.setTranslationY(View.SCROLL_AXIS_VERTICAL);
         }
     }
 

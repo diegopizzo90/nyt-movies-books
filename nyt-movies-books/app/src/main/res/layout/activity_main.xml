@@ -28,7 +28,7 @@
                 android:id="@+id/tab"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_collapseMode="none" />
+                app:layout_collapseMode="pin" />
 
         </android.support.design.widget.AppBarLayout>
 
