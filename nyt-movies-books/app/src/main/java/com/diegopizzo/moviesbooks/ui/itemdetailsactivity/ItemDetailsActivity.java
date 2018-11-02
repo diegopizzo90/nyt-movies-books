@@ -64,9 +64,9 @@ public class ItemDetailsActivity extends AbstractMvpActivity<ItemDetailsActivity
         itemDescriptionTextView.setText(resultDetails.getSummaryShort());
         itemTitleDescriptionTextView.setText(resultDetails.getHeadline());
         button.setText(R.string.read_more);
+        setMovieLayout();
 
         if (resultDetails.getMultimedia() != null) {
-            setMovieLayout();
             Glide.with(this).load(resultDetails.getMultimedia().getSrc()).into(itemImageView);
         }
         button.setOnClickListener(v -> {

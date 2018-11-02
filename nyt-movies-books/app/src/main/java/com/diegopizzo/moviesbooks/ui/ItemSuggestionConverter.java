@@ -42,11 +42,26 @@ public class ItemSuggestionConverter {
             for (final ResultBooksFound resultBooksFound : resultBooksFoundList) {
                 if (!TextUtils.isEmpty(resultBooksFound.getTitle())) {
                     final String bookTitle = resultBooksFound.getTitle();
-                    final ItemSuggestion itemSuggestionBook = new ItemSuggestion(bookTitle, ItemSuggestion.TypeItem.BOOK);
+                    String isbnBook = "";
+                    if (resultBooksFound.getIsbns() != null && !resultBooksFound.getIsbns().isEmpty() && resultBooksFound.getIsbns().get(0) != null) {
+                        isbnBook = resultBooksFound.getIsbns().get(0).getIsbn13();
+                    }
+                    String listName = "";
+                    if (resultBooksFound.getRanksHistory() != null && !resultBooksFound.getRanksHistory().isEmpty() && resultBooksFound.getRanksHistory().get(0) != null) {
+                        listName = encodeListName(resultBooksFound.getRanksHistory().get(0).getListName());
+                    }
+                    final ItemSuggestion itemSuggestionBook = new ItemSuggestion(bookTitle, isbnBook, listName, ItemSuggestion.TypeItem.BOOK);
                     itemSuggestionList.add(itemSuggestionBook);
                 }
             }
         }
         return itemSuggestionList;
+    }
+
+    private String encodeListName(final String listName) {
+        if (listName != null) {
+            return listName.toLowerCase().replace(" ", "-");
+        }
+        return "";
     }
 }

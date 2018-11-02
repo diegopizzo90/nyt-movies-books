@@ -17,6 +17,9 @@ public class ResultBooksFound {
     @SerializedName("isbns")
     @Expose
     private List<Isbn> isbns;
+    @SerializedName("ranks_history")
+    @Expose
+    private List<RankHistory> ranksHistory;
 
     public String getTitle() {
         return title;
@@ -41,6 +44,19 @@ public class ResultBooksFound {
 
     public ResultBooksFound withIsbns(final List<Isbn> isbns) {
         this.isbns = isbns;
+        return this;
+    }
+
+    public List<RankHistory> getRanksHistory() {
+        return ranksHistory;
+    }
+
+    public void setRanksHistory(final List<RankHistory> ranksHistory) {
+        this.ranksHistory = ranksHistory;
+    }
+
+    public ResultBooksFound withRanksHistory(final List<RankHistory> ranksHistory) {
+        this.ranksHistory = ranksHistory;
         return this;
     }
 }

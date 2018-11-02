@@ -61,7 +61,7 @@ public class ItemDetailsActivityPresenter implements ItemDetailsActivityContract
                 .doFinally(view::showContent)
                 .subscribe(bookDetails -> {
                     if (bookDetails != null && bookDetails.getResults() != null
-                            && !bookDetails.getResults().isEmpty()
+                            && !bookDetails.getResults().isEmpty() && bookDetails.getResults().get(0) != null
                             && bookDetails.getResults().get(0).getBookDetails() != null) {
 
                         final ResultsDetails resultDetails = bookDetails.getResults().get(0);

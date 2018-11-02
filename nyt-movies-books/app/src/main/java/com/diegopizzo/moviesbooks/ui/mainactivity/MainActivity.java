@@ -1,10 +1,12 @@
 package com.diegopizzo.moviesbooks.ui.mainactivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
@@ -14,12 +16,18 @@ import com.diegopizzo.moviesbooks.R;
 import com.diegopizzo.moviesbooks.config.MoviesBooksApplication;
 import com.diegopizzo.moviesbooks.config.mvp.AbstractMvpActivity;
 import com.diegopizzo.moviesbooks.ui.ItemSuggestion;
+import com.diegopizzo.moviesbooks.ui.itemdetailsactivity.ItemDetailsActivity;
 import com.diegopizzo.moviesbooks.ui.mainactivity.booksfragment.BooksFragment;
 import com.diegopizzo.moviesbooks.ui.mainactivity.copyrightdialogfragment.CopyrightDialogFragment;
 import com.diegopizzo.moviesbooks.ui.mainactivity.moviesreviewsfragment.MoviesReviewsFragment;
 import com.diegopizzo.moviesbooks.ui.utils.ThemeUtils;
 
 import java.util.List;
+
+import static com.diegopizzo.moviesbooks.ui.mainactivity.booksfragment.BookListAdapter.BOOK_IMAGE_BUNDLE;
+import static com.diegopizzo.moviesbooks.ui.mainactivity.booksfragment.BookListAdapter.BOOK_ISBN_BUNDLE;
+import static com.diegopizzo.moviesbooks.ui.mainactivity.booksfragment.BookListAdapter.BOOK_LIST_NAME_BUNDLE;
+import static com.diegopizzo.moviesbooks.ui.mainactivity.moviesreviewsfragment.MoviesReviewsAdapter.MOVIE_TITLE_BUNDLE;
 
 public class MainActivity extends AbstractMvpActivity<MainActivityContract.Presenter> implements MoviesReviewsFragment.OnFragmentInteractionListener,
         BooksFragment.OnFragmentInteractionListener, MainActivityContract.View {
@@ -119,6 +127,21 @@ public class MainActivity extends AbstractMvpActivity<MainActivityContract.Prese
         floatingSearchView.setOnSearchListener(new FloatingSearchView.OnSearchListener() {
             @Override
             public void onSuggestionClicked(final SearchSuggestion searchSuggestion) {
+                final ItemSuggestion itemSuggestion = (ItemSuggestion) searchSuggestion;
+
+                if (ItemSuggestion.TypeItem.MOVIE.equals(itemSuggestion.getTypeItem())) {
+                    startItemDetailsActivityForMovieSelectedOnSearchView(searchSuggestion.getBody());
+                } else if (ItemSuggestion.TypeItem.BOOK.equals(itemSuggestion.getTypeItem())) {
+                    final String isbn = itemSuggestion.getItemIsbn();
+                    final String listName = itemSuggestion.getItemListName();
+                    if (!TextUtils.isEmpty(isbn) && !TextUtils.isEmpty(listName)) {
+                        startItemDetailsActivityForBookSelectedOnSearchView(isbn, listName, "");
+                    } else {
+                        showMessage(R.string.book_not_available);
+                    }
+                } else {
+                    showMessage(R.string.item_not_available);
+                }
             }
 
             @Override
@@ -129,6 +152,25 @@ public class MainActivity extends AbstractMvpActivity<MainActivityContract.Prese
 
         floatingSearchView.setOnMenuItemClickListener(item ->
                 CopyrightDialogFragment.newInstance().show(getFragmentManager(), CopyrightDialogFragment.TAG));
+    }
+
+
+    private void startItemDetailsActivityForMovieSelectedOnSearchView(final String movieTitle) {
+        final Intent intent = new Intent(this, ItemDetailsActivity.class);
+        final Bundle titleBundle = new Bundle();
+        titleBundle.putString(MOVIE_TITLE_BUNDLE, movieTitle);
+        intent.putExtras(titleBundle);
+        startActivity(intent);
+    }
+
+    private void startItemDetailsActivityForBookSelectedOnSearchView(final String isbn, final String listName, final String imageLink) {
+        final Intent intent = new Intent(this, ItemDetailsActivity.class);
+        final Bundle bookBundle = new Bundle();
+        bookBundle.putString(BOOK_ISBN_BUNDLE, isbn);
+        bookBundle.putString(BOOK_LIST_NAME_BUNDLE, listName);
+        bookBundle.putString(BOOK_IMAGE_BUNDLE, imageLink);
+        intent.putExtras(bookBundle);
+        startActivity(intent);
     }
 
     public void setToolbar() {

@@ -23,6 +23,8 @@ public class ItemSuggestion implements SearchSuggestion {
     };
 
     private final String itemName;
+    private String itemIsbn;
+    private String itemListName;
     private TypeItem typeItem;
 
     public ItemSuggestion(final String itemName, final TypeItem typeItem) {
@@ -30,8 +32,23 @@ public class ItemSuggestion implements SearchSuggestion {
         this.typeItem = typeItem;
     }
 
+    public ItemSuggestion(final String itemName, final String itemIsbn, final String itemListName, final TypeItem typeItem) {
+        this.itemName = itemName;
+        this.itemIsbn = itemIsbn;
+        this.itemListName = itemListName;
+        this.typeItem = typeItem;
+    }
+
     public ItemSuggestion(final Parcel source) {
         this.itemName = source.readString();
+    }
+
+    public String getItemIsbn() {
+        return itemIsbn;
+    }
+
+    public String getItemListName() {
+        return itemListName;
     }
 
     public TypeItem getTypeItem() {

@@ -27,5 +27,4 @@ public class BooksFound {
         this.results = results;
         return this;
     }
-
 }

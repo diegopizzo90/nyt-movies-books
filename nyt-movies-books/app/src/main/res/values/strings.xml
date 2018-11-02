@@ -11,5 +11,7 @@
     <string name="info">info</string>
     <string name="dialog_title">Copyright</string>
     <string name="dialog_content">Copyright 2017 The New York Times Company. All Rights Reserved.</string>
-    <string name="search_movies_and_books">Search movies and books...</string>
+    <string name="search_movies_and_books">Search movies and bestsellers…</string>
+    <string name="book_not_available">Book not available</string>
+    <string name="item_not_available">Item not available</string>
 </resources>
