@@ -24,7 +24,7 @@ public class MoviesStore {
 
         store = StoreBuilder.<String, Movies>key()
                 .fetcher(key ->
-                        moviesService.getMoviesReviews(ServiceConstants.ResourceTypeMovies.ALL.getValue(),
+                        moviesService.getMoviesReviews(ServiceConstants.ResourceTypeMovies.PICKS.getValue(),
                                 Integer.parseInt(key.split(";")[0]),
                                 key.split(";")[1]))
                 .open();

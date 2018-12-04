@@ -9,6 +9,7 @@ import com.diegopizzo.moviesbooks.ui.ItemSuggestionConverter;
 
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -30,7 +31,7 @@ public class MainActivityPresenter implements MainActivityContract.Presenter {
     @Override
     public void getItemsSearched(final String query) {
         if (!TextUtils.isEmpty(query)) {
-            Single.zip(moviesInteractor.getMovieReview(query), booksInteractor.findBestsellers(query),
+            final Disposable search_error = Single.zip(moviesInteractor.getMovieReview(query), booksInteractor.findBestsellers(query),
                     (movieDetails, booksFound) -> new ItemSuggestionConverter(movieDetails, booksFound).createSuggestionList())
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())

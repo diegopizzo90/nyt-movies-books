@@ -64,7 +64,7 @@ public class MoviesReviewsFragment extends AbstractMvpFragment<MoviesReviewsFrag
     public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        orderBy = ServiceConstants.OrderMovies.BY_PUBBLICATION_DATE;
+        orderBy = ServiceConstants.OrderMovies.BY_OPENING_DATE;
         moviesReviewsAdapter = new MoviesReviewsAdapter(getContext());
     }
 
